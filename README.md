@@ -2,10 +2,7 @@
 👋 Hi, I'm @jingyang.<br><br>
 👀 I'm passionate about <strong>full-stack development</strong> and actively exploring the limitless possibilities of <strong>AI</strong>.<br><br>
 🌱 Actively exploring and utilizing technologies like React, Next.js, Node.js, TypeScript, Tailwind CSS, Monorepo, and Micro-frontends for full-stack and AI solutions. I love contributing to exciting projects.<br><br>
-Projects:<br>
-DevToolkit<br>
-ChatCode<br>
-AISaaSTemplate<br><br>
+
 📫 How to reach me: peterjingyang@gmail.com
 </p>
 
