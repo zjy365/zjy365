@@ -1,13 +1,15 @@
 <p align="left">
-👋 Hi, I'm @jingyang.<br><br>
-👀 I'm passionate about <strong>full-stack development</strong> and actively exploring the limitless possibilities of <strong>AI</strong>.<br><br>
-🌱 Actively exploring and utilizing technologies like React, Next.js, Node.js, TypeScript, Tailwind CSS, Monorepo, and Micro-frontends for full-stack and AI solutions. I love contributing to exciting projects.<br><br>
-Projects:<br>
-DevToolkit<br>
-ChatCode<br>
-AISaaSTemplate<br><br>
-📫 How to reach me: peterjingyang@gmail.com
+👋 Hi, I'm <strong>@zjy365</strong> (jingyang)<br><br>
+🚀 Full-stack developer passionate about <strong>AI infrastructure</strong> and <strong>developer tooling</strong>. Building the future of AI development accessibility.<br><br>
+🛠️ <strong>Tech Stack:</strong> React, Next.js, Node.js, TypeScript, Tailwind CSS, Kubernetes, AI/ML<br><br>
+🌟 <strong>Key Projects:</strong><br>
+- <a href="https://codofly.com"><strong>CodoflyAI</strong></a> - AI SaaS infrastructure platform with built-in auth & payments<br>
+- <a href="https://github.com/zjy365/gh-explorer"><strong>gh-explorer</strong></a> - AI-powered GitHub trends analysis CLI (23+ ⭐)<br>
+- <a href="https://devkit.best"><strong>DevToolKit</strong></a> - Curated platform for discovering quality dev tools<br><br>
+☁️ Contributor to <a href="https://github.com/labring/sealos"><strong>@Sealos</strong></a> (15.6k+ ⭐) - Kubernetes-based cloud OS<br><br>
+📫 <strong>Connect:</strong> peterjingyang@gmail.com | <a href="https://twitter.com/zjy365">@zjy365</a>
 </p>
+
 
 
 ###
