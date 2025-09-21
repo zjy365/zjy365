@@ -24,12 +24,19 @@ export async function generateMetadata({
     publishedAt: publishedTime,
     summary: description,
     image,
+    keywords,
+    author,
+    category,
+    tags,
   } = post.metadata;
   let ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
 
   return {
     title,
     description,
+    keywords: keywords?.join(", "),
+    authors: author ? [{ name: author }] : undefined,
+    category,
     openGraph: {
       title,
       description,
@@ -41,12 +48,18 @@ export async function generateMetadata({
           url: ogImage,
         },
       ],
+      tags: tags,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
       images: [ogImage],
+    },
+    other: {
+      "article:author": author,
+      "article:section": category,
+      "article:tag": tags?.join(", "),
     },
   };
 }
