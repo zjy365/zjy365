@@ -79,6 +79,35 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "Scholar AI",
+      href: "https://getscholar.app/",
+      dates: "2025 - Present",
+      active: true,
+      description:
+        "Intelligent academic assistant platform integrating multiple AI models for research, content creation, and knowledge management. Features multi-model chat, academic literature search across 5+ databases, and collaborative document editing with real-time AI assistance.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "Tailwind CSS",
+        "Node.js",
+        "Prisma",
+        "Stripe",
+        "OpenAI API",
+        "Claude API",
+        "Perplexity API",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://getscholar.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "https://getscholar.app/images/og-paper-search.png", 
+      video: "",
+    },
+    {
       title: "CodoflyAI",
       href: "https://www.codofly.com/",
       dates: "2024 - Present",
@@ -102,8 +131,7 @@ export const DATA = {
         },
       ],
       image: "/codofly.png",
-      video:
-        "",
+      video: "",
     },
     {
       title: "DevToolKit",
