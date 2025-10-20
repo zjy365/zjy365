@@ -1,0 +1,402 @@
+---
+title: "6 Months, 1500 Hours, 0 Paying Users: What I Learned After Abandoning Two Products"
+publishedAt: "2025-10-18"
+summary: "I spent 6 months in closed development, 1500+ hours, and wrote 15,000 lines of code. Result: 0 paying users. I studied the differences between ShipAny and MkSaaS, and discovered the 5 biggest mistakes indie developers make."
+image: "/template.png"
+keywords: [
+  "indie development",
+  "Building in Public",
+  "product failure",
+  "startup lessons",
+  "SaaS development",
+  "personal brand",
+  "side project",
+  "indie hacker",
+  "product marketing",
+  "tech startup",
+  "rapid validation",
+  "MVP",
+  "user needs",
+  "community building",
+  "content marketing"
+]
+author: "zjy365"
+category: "Startup Postmortem"
+tags: ["indie developer", "startup lessons", "product development", "Building in Public"]
+readingTime: "10 minutes"
+---
+
+# 6 Months, 1500 Hours, 0 Paying Users: What I Learned After Abandoning Two Products
+
+In June 2025, I shut down the Codofly development server.
+
+6 months. 1000+ hours. 15,000 lines of code.
+
+Result? 0 paying users.
+
+Two weeks later, I abandoned Scholar AI.
+
+Back then, I sat at my computer, staring at the carefully crafted code, feeling like a failure. I thought making good products was enough. I was wrong.
+
+But these two failures taught me more than any success ever could.
+
+If you're also building side projects, if you're struggling with why no one is using your product, this article might help you.
+
+## Product #1: Codofly - The Technical Trap
+
+I'm a full-stack developer. I previously contributed to Sealos, which now has 15.6k stars.
+
+So I thought I understood technology. I wanted to create an AI SaaS template to help developers launch products quickly. Sounds good, right?
+
+In January 2025, I started writing code.
+
+### What I Invested
+
+For the first two months, I spent significant time on architecture. Next.js 15, TypeScript, Prisma, PostgreSQL. I studied various best practices.
+
+Authentication system? I used NextAuth.js 5, spending 2 weeks optimizing various edge cases.
+
+AI integration? I supported OpenAI, Anthropic, Google, and xAI. Streaming responses, cost calculation, error handling - I considered everything.
+
+Payment system? Stripe subscriptions, credit billing, Alipay, WeChat Pay - I had everything.
+
+After 6 months, I had a "perfect" product. Clean code, elegant architecture, comprehensive features.
+
+I'd give myself an 8/10.
+
+Then I launched.
+
+### First Week
+
+Visits: 47
+
+Registered users: 3 (all my friends)
+
+Paying users: 0
+
+I thought, maybe it wasn't enough promotion. So I posted on Twitter.
+
+No response.
+
+### Second Week
+
+Visits: 31
+
+New registrations: 1
+
+Paying: 0
+
+I started panicking. I posted on Reddit with the title "Brand new AI SaaS development template, integrated with multiple AI models."
+
+15 reads, 2 replies, both asking "What's the difference from other templates?"
+
+I couldn't answer. Because technically we were similar, or even mine was better.
+
+But that wasn't the point.
+
+### My Three Fatal Mistakes
+
+**Mistake 1: I thought technology was a moat**
+
+I spent a full 2 weeks optimizing database query performance. From 200ms down to 50ms.
+
+After launching, I discovered: nobody cared.
+
+Users asked: "Can this help me make money?" "How long to launch?" "Do you have success stories?"
+
+Not: "Are you using PostgreSQL or MySQL?" "How fast are the queries?"
+
+I later studied ShipAny, an AI application template developed by idoubi.cv. His code might not be as "elegant" as mine, but he solved users' core problem: quick launch.
+
+His slogan is about enabling developers to quickly build and deploy AI applications.
+
+Mine? "Enterprise AI application development template, integrated with multiple AI models."
+
+Which is more compelling?
+
+**Truth 1: Technology is only 30%, marketing is 70%**
+
+This was the most expensive lesson I learned in 6 months.
+
+**Mistake 2: Closed development, zero marketing**
+
+During the 6 months of development:
+- My Twitter updates: 0
+- My blog posts: 0
+- My community operations: 0
+
+I thought "good wine needs no advertising." I thought good products would sell themselves.
+
+Then I saw idoubi.cv's data:
+
+- Twitter followers: 20k+
+- Shares development progress daily
+- ShipAny continuously gains users
+- Actively participates in developer community
+
+Me?
+
+- Twitter followers: 200
+- Newsletter: non-existent
+- Sharing frequency: never
+- Public data: never
+- Launch results: $0
+
+The gap isn't in the product, it's in the brand.
+
+**Truth 2: Personal brand > product itself**
+
+If nobody knows who you are = nobody trusts your product.
+
+**Mistake 3: Who is the target audience? I didn't know either**
+
+My Landing Page said: "Enterprise AI SaaS template."
+
+What does "enterprise-grade" mean?
+
+Is it for large companies? But large companies have their own development teams, they won't buy templates.
+
+Is it for startups? But they have limited budgets and will choose cheaper options.
+
+Is it for individual developers? But the term "enterprise-grade" scares them away.
+
+Result: nobody was my user.
+
+Compare ShipAny's positioning: focused on rapid AI application development, lowering technical barriers
+
+Clear. Practical. Target audience is clear.
+
+MkSaaS: "One-stop AI application development platform," developed by indie_maker_fox
+
+One-stop service? That promise is attractive.
+
+My positioning? Vague, cold, technical.
+
+**Truth 3: If you serve everyone, you serve no one**
+
+## Product #2: Scholar AI - The Passion Test
+
+After Codofly failed, I told myself: it's okay, let's try again.
+
+This time I chose a "bigger market" direction: academic research AI assistant.
+
+Sounds promising, right? The academic community has so many people, there must be demand.
+
+I spent 3 weeks doing market research, reading various research papers. Then started development.
+
+### One Month Later
+
+I found myself completely losing interest.
+
+Why?
+
+Because I'm not the user.
+
+I don't do academic research. I don't read papers. I barely even visit arxiv.
+
+I just thought "this idea sounds good."
+
+But you can't build products based on "sounds good."
+
+Every time I wanted to add new features, I had to ask others: "Would academic researchers need this?"
+
+I didn't know. Because I'm not them.
+
+Then I thought about my other product: DevToolKit.
+
+That's a developer tools curation website. Why did it succeed (now 1.4K monthly visits)?
+
+Because **I search for developer tools every day**.
+
+I'm the first user. I know where the pain points are, I know what content is valuable.
+
+Every feature of DevToolKit exists because I needed it myself.
+
+Scholar AI? I was building a product for a user group I didn't understand.
+
+One month later, I abandoned it.
+
+**Truth 4: Scratch your own itch**
+
+The best products often come from your own needs.
+
+## The 5 Harsh Truths
+
+Looking back, these two failures gave me 5 clear lessons.
+
+### Truth 1: Technology is only 30%, marketing and branding are 70%
+
+My Codofly:
+- Code quality: 8/10
+- Marketing ability: 1/10
+- Result: failure
+
+ShipAny:
+- Code quality: 7/10 (probably)
+- Marketing ability: 10/10
+- Result: continuous user growth and revenue
+
+This comparison woke me up.
+
+Good code is important, but it's not the decisive factor for success.
+
+idoubi.cv's words made me understand: personal brand is more important than the product itself.
+
+I thought this was motivational fluff back then. Now I know it's truth.
+
+### Truth 2: Community is the moat, not technology
+
+Codofly's technical barrier: high (15,000 lines of carefully optimized code)
+
+Codofly's community size: 0
+
+Codofly's moat: non-existent
+
+MkSaaS's technical barrier: medium (similar to other templates)
+
+MkSaaS's community: active user base and developer community
+
+MkSaaS's moat: strong (community helps with marketing, provides feedback, supports new users)
+
+Technology can be copied. If you're ahead today, others can catch up tomorrow.
+
+But community can't. An active, valuable community is the hardest asset to replicate.
+
+I spent 6 months optimizing code, but ignored the most important thing: building community.
+
+### Truth 3: Rapid validation > perfect product
+
+My way:
+- 6 months of closed development
+- Pursued perfection
+- Only validated after launch
+- Found nobody wanted it
+- Time was wasted
+
+The right way (what I learned now):
+- 3-7 days to build MVP
+- Launch immediately
+- Collect data and feedback
+- Continue if growing, abandon if not
+- Time is the most precious resource
+
+I've seen many successful indie makers do this.
+
+Pieter Levels built 100+ products, only a few succeeded. But his validation cycle for each was short.
+
+Me? Put all eggs in one basket, invested 6 months, and the basket was broken.
+
+### Truth 4: Building in Public is not an option, it's essential
+
+I studied all successful SaaS boilerplates:
+
+- ShipAny (idoubi.cv): active community participation
+- MkSaaS (indie_maker_fox): continuous product updates and community building
+
+They're all doing one thing: Building in Public
+
+It's not about sharing only after success, but from day one:
+- Share revenue numbers (even if $0)
+- Share failures and setbacks
+- Share what you've learned
+- Share product decisions
+
+Why is this so important?
+
+Because transparency = trust = growth
+
+When you share the real process openly, people will:
+1. Trust you (you're not hiding)
+2. Support you (witness your growth)
+3. Recommend you (feel involved)
+4. Become your community
+
+I developed in private for 6 months, missing all these opportunities.
+
+### Truth 5: You're not selling a product, you're selling transformation
+
+Look at successful product positioning:
+
+ShipAny: focused on rapid AI application development and deployment
+→ They're selling efficiency and technical convenience
+
+MkSaaS: one-stop AI application development platform
+→ They're selling complete solutions
+
+My Codofly: "Enterprise AI application development template"
+→ I'm selling... code?
+
+People don't buy feature lists. They buy:
+- Dreams (what I want)
+- Fears (what I'm afraid of)
+- Transformation (from current state to ideal state)
+
+ShipAny users aren't buying technical templates, they're buying the possibility of "quickly build AI applications, save development time."
+
+Me? I was selling tech stack.
+
+This is the gap.
+
+## A New Beginning
+
+What did these two failures cost me?
+
+- 7 months of time
+- 1500+ hours
+- Countless late nights
+
+But what did I gain?
+
+- Clear understanding
+- New strategy
+- These 5 harsh truths
+- Knowing what to do and what not to do
+
+Now, I'm starting over.
+
+But this time it's different:
+
+✓ I'll build in public from day one
+
+✓ I'll build my personal brand first, then push products
+
+✓ I'll validate quickly, 3-7 day MVPs
+
+✓ I'll build products I need
+
+✓ I'll share real data, including failures
+
+I set a goal for myself: 90 days, from $0 to $3K MRR.
+
+Might not reach it, but that's not the point.
+
+The point is the process. Is transparency. Is authenticity. Is growth.
+
+If you're also building side projects, if you've also experienced failure, I want to tell you:
+
+**Failure isn't scary, not learning from it is.**
+
+I'll document every step of these 90 days. Real data, real struggles, real growth.
+
+Welcome to follow my journey.
+
+---
+
+**About Me**
+
+I'm zjy365, full-stack developer, Sealos contributor (15.6k⭐).
+
+Currently operating:
+- DevToolKit (developer tools curation, 1.4K UV/month)
+- LinkedIn Formatter (LinkedIn formatting tool)
+
+Starting today: 90-day Building in Public experiment
+
+Find me:
+- Twitter/X: [@zjy365](https://twitter.com/zjy365)
+- Website: [zjy365.dev](https://zjy365.dev)
+- GitHub: [github.com/zjy365](https://github.com/zjy365)
+
+Next week, I'll share my complete 90-day plan.
+
+Let's witness this experiment together.
