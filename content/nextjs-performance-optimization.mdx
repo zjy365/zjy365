@@ -1,0 +1,191 @@
+---
+title: "Next.js网站性能优化实战：从499KB到154KB的优化之路"
+publishedAt: "2024-03-19"
+summary: "详细介绍Next.js网站性能优化实践，包括bundle分析、Lighthouse优化、图片优化等，成功将构建产物从499KB减少到154KB，性能提升69%"
+image: "/nextjs-performance-optimization.jpg"
+keywords: 
+  - "Next.js性能优化"
+  - "网站性能优化"
+  - "Lighthouse优化"
+  - "bundle分析"
+  - "Core Web Vitals"
+  - "LCP优化"
+  - "CLS优化"
+  - "图片优化"
+  - "前端性能"
+  - "JavaScript优化"
+author: "zjy365"
+category: "前端开发"
+tags:
+  - "Next.js"
+  - "性能优化"
+  - "前端"
+  - "JavaScript"
+  - "React"
+  - "Lighthouse"
+  - "Core Web Vitals"
+  - "bundle分析"
+readingTime: "8分钟"
+---
+
+本文主要是针对具体问题的解决，性能优化的实践，提供一个思路和方法，各位看官具体情况需要具体处理。
+
+## 为什么需要性能优化？
+
+笔者首先是从网站的使用体验上，感觉速度没有之前快了，于是打开了network 和 lighthouse
+
+发现 `next.js` 构建产物 `_app-178bb03084901d5c.js` 有499KB，这么大，同时 lighthouse 也指出了一些其他问题。
+
+```jsx
+"next": "13.1.6",
+"react": "18.2.0",
+"react-dom": "18.2.0",
+```
+
+在不同网速下，情况如下
+
+![Untitled.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9d4bc64c943e443aa09feb8e064f1fd7~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1472\&h=840\&s=523834\&e=png\&b=fefefe)
+
+## 核心优化策略
+
+### 1. Bundle体积分析与优化
+
+### 2. Lighthouse和**核心网页指标**优化
+
+*   **Largest Contentful Paint (LCP)**：衡量*加载*性能。 为了提供良好的用户体验，LCP 必须在网页首次开始加载后的 **2.5 秒**内发生。
+*   **Interaction to Next Paint (INP)**：衡量*互动*。为了提供良好的用户体验，网页的 INP 不得超过 **200 毫秒**。
+*   **Cumulative Layout Shift (CLS)**：衡量*视觉稳定性*。为了提供良好的用户体验，必须将 CLS 保持在 **0.1.** 或更低
+
+Google 的性能评估工具，用于优化网站性能、可访问性、最佳实践和 SEO。优化前如下图
+
+![Untitled 1.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0dc9d1b71fef4e55bb96afb986ccd1d0~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1662\&h=1120\&s=190943\&e=png\&b=fefefe)
+
+安装 `[@next/bundle-analyzer](https://www.npmjs.com/package/@next/bundle-analyzer)` 是 Next.js 的一个插件，可帮助您管理 JavaScript 模块的大小。它生成每个模块的大小及其依赖关系的可视化报告。您可以使用这些信息来删除较大的依赖项、拆分代码或仅在需要时加载某些部分，从而减少传输到客户端的数据量。
+
+```jsx
+npm i @next/bundle-analyzer
+# or
+yarn add @next/bundle-analyzer
+# or
+pnpm add @next/bundle-analyzer
+```
+
+然后修改  `next.config.js`
+
+```jsx
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+ 
+/** @type {import('next').NextConfig} */
+const nextConfig = {}
+ 
+module.exports = withBundleAnalyzer(nextConfig)
+```
+
+分析依赖包
+
+```jsx
+ANALYZE=true npm run build
+# or
+ANALYZE=true yarn build
+# or
+ANALYZE=true pnpm build
+```
+
+执行分析命令后～
+
+![WechatIMG38825.jpg](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2cee3915c982499b9c8a55adaf97bdc3~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=3374\&h=1520\&s=4292896\&e=png\&b=8dacda)
+
+我们就看到，这个体积确实大，发现 highlight.js，加载了全部语言包，这对我来说不是必须的，应该采用异步或者轻量加载的方式。
+
+但是我的代码中没有使用highlight.js，通过`pnpm why highlight.js` 发现被其他库引入的(react-syntax-highlighter)，找到了问题的源头，于是开始修改相关组件。
+
+把 react-syntax-highlighter 改为轻量导入
+
+```jsx
+// 轻量导入的方式
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+```
+
+![image.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/0ecc8f29179347dca5514f87f3b6f7e7~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAgemp5MzY1:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiNzkxMjgwNTk0NzIyMzk4In0%3D&rk3s=f64ab15b&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1762178366&x-orig-sign=Xt26D%2BLEgYTDeVRZzRLtqjGRZao%3D)
+
+![Untitled 2.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/95d6473ff7364244bb893c38a9131a0c~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=560\&h=354\&s=48283\&e=png\&b=24272d)
+
+### 3. **优化 Cumulative Layout Shift**
+
+顶部的“轮播图”是根据systemconfig api 返回结果动态渲染的，它导致 “布局偏移”，因为他不一定存在。设置元素的 **`display`**、**`visibility`** 或 **`opacity`** 等 CSS 属性来隐藏元素，这种方式是不行的。
+
+Next.js 的服务端渲染解决问题，决定这个“轮播图”是否出现，通过服务端提前拿到是否展示轮播图的结果，这样客户端就不会出现偏移了
+
+```jsx
+export async function getServerSideProps(content: any) {
+  const baseurl = `http://${process.env.HOSTNAME || 'localhost'}:${process.env.PORT || 3000}`;
+  const { data } = (await (await fetch(`${baseurl}/api/platform/getSystemConfig`)).json()) as {
+    data: SystemConfigType;
+  };
+
+  return {
+    props: {
+      ...(await serviceSideProps(content)),
+      showCarousel: data.showCarousel
+    }
+  };
+}
+```
+
+### 4. 图片资源优化
+
+首先使用 next/image 优化图像，减小图片大小，使用 priority 对影响LCP的图像优先渲染。
+
+应该对检测为最大内容绘制 (LCP) 元素的任何图像使用优先级属性。具有多个优先级图像可能是合适的，因为不同的图像可能是不同视口尺寸的LCP元素。
+
+```jsx
+import Image from 'next/image'
+ 
+export default function Page() {
+  return (
+    <Image
+      src="/profile.png"
+      width={500}
+      height={500}
+      alt="Picture of the author"
+      priority
+    />
+  )
+}
+```
+
+使用 [tinify.cn](https://tinify.cn/) 压缩图片大小，使用更好格式的图片
+
+### 5. 无障碍访问优化
+
+这里只做了小小的处理，给相关的按钮增加了id，能够提高页面的可访问性，这里就不多说了
+
+## 优化效果对比
+
+这里是网站优化过之后的 lighthouse， 有了很明显的提升。
+
+![Untitled 3.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fe7b5e79576248fab53d98c471bad76b~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1714\&h=1432\&s=223101\&e=png\&b=ffffff)
+
+优化过的依赖体积，由原来的 `485KB` 减少到 `154KB`，优化大约百分之69%
+
+![WechatIMG38829.jpg](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/85aacb83e0de4d6795376567a768322f~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=3356\&h=1528\&s=4157069\&e=png\&b=85b3d6)
+
+优化过的 network
+
+![Snipaste\_2024-03-19\_22-45-19.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5009a00e25774df5a44b491767a53ced~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=3024\&h=1266\&s=780306\&e=png\&b=ffffff)
+
+## 总结与最佳实践
+
+通过这次Next.js性能优化实践，我们成功将构建产物从499KB减少到154KB，性能提升69%。主要优化策略包括：
+
+1. **Bundle分析优化**：使用@next/bundle-analyzer识别大体积依赖
+2. **Core Web Vitals优化**：重点优化LCP、INP、CLS指标
+3. **图片资源优化**：使用next/image和图片压缩
+4. **服务端渲染优化**：减少客户端布局偏移
+5. **无障碍访问优化**：提升页面可访问性
+
+这些优化技巧不仅适用于Next.js项目，也可以应用到其他React项目中。希望这篇文章能帮助到有类似性能优化需求的前端开发者。
+
+下次见各位看官，Next.js国际化多语言探索实践～
