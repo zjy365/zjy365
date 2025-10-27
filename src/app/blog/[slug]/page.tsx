@@ -4,6 +4,7 @@ import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { BlogContent } from "@/components/blog-content";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
@@ -111,10 +112,9 @@ export default async function Blog({
           </p>
         </Suspense>
       </div>
-      <article
-        className="prose dark:prose-invert"
-        dangerouslySetInnerHTML={{ __html: post.source }}
-      ></article>
+      <Suspense fallback={<div className="animate-pulse">Loading content...</div>}>
+        <BlogContent content={post.source} />
+      </Suspense>
     </section>
   );
 }
