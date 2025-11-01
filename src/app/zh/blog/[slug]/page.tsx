@@ -9,7 +9,7 @@ import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
+  const posts = await getBlogPosts("zh");
   return posts.map((post) => ({ slug: post.slug }));
 }
 
@@ -20,7 +20,7 @@ export async function generateMetadata({
     slug: string;
   };
 }): Promise<Metadata | undefined> {
-  let post = await getPost(params.slug);
+  let post = await getPost(params.slug, "zh");
 
   let {
     title,
@@ -45,7 +45,7 @@ export async function generateMetadata({
       description,
       type: "article",
       publishedTime,
-      url: `${DATA.url}/blog/${post.slug}`,
+      url: `${DATA.url}/zh/blog/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -74,14 +74,14 @@ export default async function Blog({
     slug: string;
   };
 }) {
-  let post = await getPost(params.slug);
+  let post = await getPost(params.slug, "zh");
 
   if (!post) {
     notFound();
   }
 
-  // Get all posts to find previous/next
-  const allPosts = await getBlogPosts();
+  // Get all Chinese posts to find previous/next
+  const allPosts = await getBlogPosts("zh");
   const sortedPosts = allPosts.sort((a, b) => {
     if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
       return -1;
@@ -109,7 +109,7 @@ export default async function Blog({
             image: post.metadata.image
               ? `${DATA.url}${post.metadata.image}`
               : `${DATA.url}/og?title=${post.metadata.title}`,
-            url: `${DATA.url}/blog/${post.slug}`,
+            url: `${DATA.url}/zh/blog/${post.slug}`,
             author: {
               "@type": "Person",
               name: DATA.name,
@@ -118,13 +118,13 @@ export default async function Blog({
         }}
       />
 
-      {/* Back to home link */}
+      {/* Back to blog link */}
       <Link
-        href="/blog"
+        href="/zh/blog"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 group"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-        Back to Blog
+        返回博客列表
       </Link>
 
       <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
@@ -137,7 +137,7 @@ export default async function Blog({
           </p>
         </Suspense>
       </div>
-      <Suspense fallback={<div className="animate-pulse">Loading content...</div>}>
+      <Suspense fallback={<div className="animate-pulse">加载中...</div>}>
         <BlogContent content={post.source} />
       </Suspense>
 
@@ -147,12 +147,12 @@ export default async function Blog({
           <div className="flex-1">
             {previousPost ? (
               <Link
-                href={`/blog/${previousPost.slug}`}
+                href={`/zh/blog/${previousPost.slug}`}
                 className="group flex flex-col gap-1 text-sm"
               >
                 <div className="flex items-center gap-1 text-muted-foreground group-hover:text-foreground transition-colors">
                   <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                  <span>Previous</span>
+                  <span>上一篇</span>
                 </div>
                 <span className="text-foreground group-hover:underline line-clamp-1">
                   {previousPost.metadata.title}
@@ -166,11 +166,11 @@ export default async function Blog({
           <div className="flex-1 flex flex-col items-end text-right">
             {nextPost ? (
               <Link
-                href={`/blog/${nextPost.slug}`}
+                href={`/zh/blog/${nextPost.slug}`}
                 className="group flex flex-col gap-1 text-sm"
               >
                 <div className="flex items-center justify-end gap-1 text-muted-foreground group-hover:text-foreground transition-colors">
-                  <span>Next</span>
+                  <span>下一篇</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
                 <span className="text-foreground group-hover:underline line-clamp-1">

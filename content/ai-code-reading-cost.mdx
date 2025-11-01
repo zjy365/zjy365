@@ -1,159 +1,160 @@
 ---
-title: "AI 生成代码很快，但读懂它才是真正的成本"
+title: "AI Writes Code Fast, But Understanding It Is the Real Cost"
 publishedAt: "2025-10-30"
-summary: "AI 让写代码变得前所未有的快，但理解和维护 AI 生成的代码成本更高。软件开发的真正瓶颈从'写'转移到了'理解'。"
+summary: "AI makes writing code faster than ever, but understanding and maintaining AI-generated code comes at a higher cost. The real bottleneck in software development has shifted from 'writing' to 'understanding'."
 image: "/zjy365.png"
 keywords: [
-  "AI 编程",
-  "代码理解",
-  "心智模型",
-  "代码维护",
-  "软件开发",
-  "技术债务",
-  "代码质量",
-  "AI 工具",
-  "编程效率",
-  "代码审查"
+  "AI programming",
+  "code comprehension",
+  "mental models",
+  "code maintenance",
+  "software development",
+  "technical debt",
+  "code quality",
+  "AI tools",
+  "programming efficiency",
+  "code review"
 ]
 author: "zjy365"
-category: "技术洞察"
-tags: ["AI", "代码理解", "软件开发", "技术洞察", "编程效率"]
+category: "Technical Insights"
+tags: ["AI", "Code Comprehension", "Software Development", "Technical Insights", "Programming Efficiency"]
 readingTime: "10 minutes"
+lang: "en"
 ---
 
-# AI 生成代码很快，但读懂它才是真正的成本
+# AI Writes Code Fast, But Understanding It Is the Real Cost
 
-最近看到一篇文章《[写代码很简单，读懂它才是难事](https://idiallo.com/blog/writing-code-is-easy-reading-is-hard)》，深有共鸣。
+I recently came across an article called "[Writing Code Is Easy, Reading Is Hard](https://idiallo.com/blog/writing-code-is-easy-reading-is-hard)", and it really resonated with me.
 
-文章的核心观点是：写代码是件容易事，但真正的难点在于读。你需要花时间在脑海里构建起对整个系统的认知地图，这才是所有成本的真正所在。
+The core idea is simple: writing code is easy, but the real challenge is reading it. You need to spend time building a mental map of the entire system in your head, and that's where all the real costs lie.
 
-但 AI 时代的到来，让这个矛盾变得更加尖锐。
+But the AI era has made this paradox even more acute.
 
-## AI 让"写"变得更容易，但"读"的成本没有降低
+## AI Makes "Writing" Easier, But "Reading" Hasn't Gotten Cheaper
 
-AI 确实让写代码变得前所未有的快。以前需要几小时才能实现的功能，现在几分钟就能生成出来。让大语言模型帮你写出整个函数？那就更容易了。
+AI has indeed made writing code faster than ever before. Features that used to take hours can now be generated in minutes. Getting a large language model to write an entire function? Even easier.
 
-但问题是，**读代码的成本没有降低，反而增加了**。
+But here's the problem: **the cost of reading code hasn't decreased—it's actually increased**.
 
-为什么？因为 AI 生成的代码缺少"思考过程"。
+Why? Because AI-generated code lacks the "thinking process."
 
-当你自己写代码时，你经历了完整的思考过程：
-- 为什么要这样设计？
-- 为什么选择这个算法？
-- 为什么这样处理边界情况？
-- 为什么这样命名变量？
+When you write code yourself, you go through a complete thought process:
+- Why design it this way?
+- Why choose this algorithm?
+- Why handle edge cases like this?
+- Why name variables this way?
 
-但 AI 生成的代码，你看到的是结果，不是过程。就像继承别人的游戏存档，结果一上来就直接被扔进 Boss 战的战场中央，你不知道前面经历了什么。
+But with AI-generated code, you see the result, not the process. It's like inheriting someone else's saved game—you're thrown straight into the middle of a boss fight with no idea what happened before.
 
-## 心智模型的构建成本
+## The Cost of Building Mental Models
 
-《[写代码很简单，读懂它才是难事](https://idiallo.com/blog/writing-code-is-easy-reading-is-hard)》中提到了"心智模型"的概念：它是你对系统如何工作的内部地图，上面标注着哪些地方是雷区，哪些东西依赖于另一些东西。
+The article "[Writing Code Is Easy, Reading Is Hard](https://idiallo.com/blog/writing-code-is-easy-reading-is-hard)" talks about the concept of "mental models"—your internal map of how the system works, marking where the landmines are and what depends on what.
 
-AI 生成的代码同样需要构建心智模型，但这个过程更加困难。
+AI-generated code also requires building mental models, but this process is much harder.
 
-### 缺少上下文
+### Missing Context
 
-AI 只看到你给的提示，不了解整个系统的架构。它可能：
-- 选择了不合适的库
-- 使用了与现有代码风格不符的写法
-- 引入了你不需要的依赖
-- 忽略了系统的性能要求
+AI only sees the prompt you give it and doesn't understand the entire system architecture. It might:
+- Choose an inappropriate library
+- Use coding styles that don't match your existing codebase
+- Introduce dependencies you don't need
+- Ignore your system's performance requirements
 
-### 风格不一致
+### Inconsistent Styles
 
-不同时间生成的代码可能风格迥异。今天生成的函数用 `async/await`，明天生成的用 `Promise.then()`。这种不一致性让代码更难理解。
+Code generated at different times might have wildly different styles. Today's function uses `async/await`, tomorrow's uses `Promise.then()`. This inconsistency makes code harder to understand.
 
-### 隐藏依赖
+### Hidden Dependencies
 
-AI 可能引入你不知道的库或模式。你看到一个简单的函数，但要理解它，你需要：
-- 追溯这个函数在哪里定义
-- 理解它返回什么数据结构
-- 知道它如何与数据库交互
-- 了解它有没有副作用
-- 搞清楚还有谁在调用它
+AI might introduce libraries or patterns you don't know about. You see a simple function, but to understand it, you need to:
+- Trace where this function is defined
+- Understand what data structure it returns
+- Know how it interacts with the database
+- Find out if it has side effects
+- Figure out who else is calling it
 
-为了理解一个 AI 生成的函数，你常常需要查看其他五个文件。
+To understand one AI-generated function, you often need to look at five other files.
 
-## 真正的成本在哪里
+## Where the Real Costs Lie
 
-让我们看看 AI 时代软件开发的成本分布：
+Let's look at the cost distribution of software development in the AI era:
 
-### 写代码：从几小时缩短到几分钟
-这是 AI 的贡献。以前需要学习语法、查找文档、调试错误的时间，现在几乎为零。
+### Writing Code: From Hours to Minutes
+This is AI's contribution. The time previously spent learning syntax, looking up documentation, and debugging errors is now almost zero.
 
-### 读代码：依然需要几小时甚至更久
-AI 没有解决这个问题。你仍然需要：
-- 理解代码的意图
-- 分析代码的结构
-- 追踪代码的依赖关系
-- 理解代码的副作用
+### Reading Code: Still Takes Hours or Longer
+AI hasn't solved this problem. You still need to:
+- Understand the code's intent
+- Analyze the code's structure
+- Track the code's dependencies
+- Understand the code's side effects
 
-### 调试：更难了
-因为你不知道 AI 的"思路"，调试变得更加困难。当代码出错时，你不知道：
-- AI 为什么这样写？
-- 这个边界情况 AI 考虑了吗？
-- 这个性能问题 AI 知道吗？
+### Debugging: Even Harder
+Because you don't know AI's "thinking," debugging becomes more difficult. When code breaks, you don't know:
+- Why did AI write it this way?
+- Did AI consider this edge case?
+- Does AI know about this performance issue?
 
-### 维护：更难了
-因为你没有经历构建过程，维护变得更加困难。当需要修改时，你不知道：
-- 这个修改会影响哪些地方？
-- 这个设计决策可以改变吗？
-- 这个依赖关系可以优化吗？
+### Maintenance: Even Harder
+Because you didn't experience the building process, maintenance becomes more difficult. When modifications are needed, you don't know:
+- What else will this change affect?
+- Can this design decision be changed?
+- Can this dependency be optimized?
 
-**软件开发的瓶颈从"写"转移到了"理解"**。
+**The bottleneck in software development has shifted from "writing" to "understanding"**.
 
-## 如何更好地使用 AI
+## How to Better Use AI
 
-既然理解成本无法避免，我们如何更好地使用 AI？
+Since the cost of understanding can't be avoided, how can we better use AI?
 
-### 让 AI 帮助理解，而不只是生成
+### Let AI Help Understand, Not Just Generate
 
-与其让 AI 生成大段大段的代码，不如让它帮助我们理解现有的代码：
+Instead of having AI generate huge blocks of code, have it help us understand existing code:
 
-- **让 AI 解释现有代码**：把复杂的函数丢给 AI，让它解释逻辑
-- **让 AI 生成文档和注释**：让 AI 为现有代码添加说明
-- **让 AI 分析代码结构**：让 AI 分析代码的依赖关系和调用链
+- **Let AI explain existing code**: Throw complex functions at AI and have it explain the logic
+- **Let AI generate documentation and comments**: Have AI add explanations to existing code
+- **Let AI analyze code structure**: Have AI analyze code dependencies and call chains
 
-### 控制生成规模
+### Control Generation Scale
 
-- **小块生成，逐步验证**：不要一次性生成整个模块
-- **避免让 AI 生成整个模块**：保持对代码结构的控制
-- **理解后再使用**：不要直接复制粘贴
+- **Generate in small chunks, verify incrementally**: Don't generate entire modules at once
+- **Avoid having AI generate entire modules**: Maintain control over code structure
+- **Understand before using**: Don't just copy and paste
 
-### 保持参与感
+### Stay Engaged
 
-- **不要直接复制粘贴**：理解后再使用
-- **必要时手动重构**：把 AI 生成的代码改造成你理解的样子
-- **保持代码风格一致**：建立团队的代码规范
+- **Don't copy and paste directly**: Understand first, then use
+- **Refactor manually when necessary**: Transform AI-generated code into something you understand
+- **Maintain consistent code style**: Establish team coding standards
 
-## 对未来的思考
+## Thoughts on the Future
 
-我们需要的不是"更快的代码生成器"，而是"更好的理解工具"。
+What we need isn't a "faster code generator" but "better understanding tools."
 
-AI 的下一个突破应该在"帮助理解"而非"帮助生成"。
+AI's next breakthrough should be in "helping understand" rather than "helping generate."
 
-想象一下，如果 AI 能够：
-- 瞬间分析整个代码库的结构
-- 自动生成代码的依赖关系图
-- 智能识别代码中的设计模式
-- 自动检测代码中的潜在问题
+Imagine if AI could:
+- Instantly analyze the entire codebase structure
+- Automatically generate code dependency graphs
+- Intelligently identify design patterns in code
+- Automatically detect potential issues in code
 
-那才是真正的革命。
+That would be a real revolution.
 
-编程的未来，可能不在于更快地生成更多代码，而在于更快地生成"理解"。
+The future of programming might not be about generating more code faster, but generating "understanding" faster.
 
-## 写在最后
+## Final Thoughts
 
-AI 改变了写代码的方式，但没有改变软件开发的本质。
+AI has changed how we write code, but it hasn't changed the essence of software development.
 
-理解和维护依然是核心成本。我们解决了"打字速度"的问题，现在我们能生成的代码，远比我们能读懂的要多得多。
+Understanding and maintenance remain the core costs. We've solved the "typing speed" problem—now we can generate far more code than we can read and understand.
 
-但除非我们解决了"理解"的问题，否则软件开发的成本依旧没变：它还是取决于一个人需要花多长时间才能搞懂这一切。
+But unless we solve the "understanding" problem, the cost of software development remains unchanged: it still depends on how long it takes a person to figure it all out.
 
-明智地使用 AI：让它加速理解，而不只是加速生成。
+Use AI wisely: let it accelerate understanding, not just generation.
 
-这才是 AI 时代程序员的正确姿势。
+That's the right approach for programmers in the AI era.
 
 ---
 
-*如果你也在使用 AI 编程工具，欢迎分享你的经验和困惑。我们可以一起讨论如何在快速生成和深度理解之间找到平衡。*
+*If you're also using AI programming tools, I'd love to hear about your experiences and challenges. Let's discuss how to find the balance between rapid generation and deep understanding.*

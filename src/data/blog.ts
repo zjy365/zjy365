@@ -43,8 +43,19 @@ export async function markdownToHTML(markdown: string) {
   return p.toString();
 }
 
-export async function getPost(slug: string) {
-  const filePath = path.join("content", `${slug}.mdx`);
+export async function getPost(slug: string, locale: string = "en") {
+  let filePath: string;
+
+  if (locale === "zh") {
+    filePath = path.join("content", "zh", `${slug}.mdx`);
+  } else {
+    filePath = path.join("content", `${slug}.mdx`);
+  }
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Post not found: ${slug} (locale: ${locale})`);
+  }
+
   let source = fs.readFileSync(filePath, "utf-8");
   const { content: rawContent, data: metadata } = matter(source);
   const content = await markdownToHTML(rawContent);
@@ -55,12 +66,12 @@ export async function getPost(slug: string) {
   };
 }
 
-async function getAllPosts(dir: string) {
+async function getAllPosts(dir: string, locale: string = "en") {
   let mdxFiles = getMDXFiles(dir);
   return Promise.all(
     mdxFiles.map(async (file) => {
       let slug = path.basename(file, path.extname(file));
-      let { metadata, source } = await getPost(slug);
+      let { metadata, source } = await getPost(slug, locale);
       return {
         metadata,
         slug,
@@ -70,6 +81,9 @@ async function getAllPosts(dir: string) {
   );
 }
 
-export async function getBlogPosts() {
-  return getAllPosts(path.join(process.cwd(), "content"));
+export async function getBlogPosts(locale: string = "en") {
+  if (locale === "zh") {
+    return getAllPosts(path.join(process.cwd(), "content", "zh"), "zh");
+  }
+  return getAllPosts(path.join(process.cwd(), "content"), "en");
 }

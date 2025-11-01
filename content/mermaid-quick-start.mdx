@@ -1,148 +1,148 @@
 ---
-title: "Mermaid 快速上手指南"
+title: "Mermaid Quick Start Guide"
 publishedAt: "2024-10-27"
-summary: "学习如何在博客中使用 Mermaid 创建各种类型的图表，包括流程图、时序图、饼图等。"
-keywords: ["mermaid", "图表", "教程", "快速上手"]
+summary: "Learn how to create various types of diagrams in your blog using Mermaid, including flowcharts, sequence diagrams, pie charts, and more."
+keywords: ["mermaid", "diagrams", "tutorial", "quick start"]
 author: "Jing Yang"
-category: "技术教程"
-tags: ["mermaid", "图表", "教程", "可视化"]
+category: "Technical Tutorial"
+tags: ["mermaid", "diagrams", "tutorial", "visualization"]
 ---
 
-# Mermaid 快速上手指南
+# Mermaid Quick Start Guide
 
-Mermaid 是一个强大的图表生成工具，可以通过简单的文本语法创建各种类型的可视化图表。本教程将帮助你快速掌握在博客中使用 Mermaid 的技巧。
+Mermaid is a powerful diagram generation tool that lets you create various types of visual diagrams using simple text syntax. This tutorial will help you quickly master using Mermaid in your blog.
 
-## 🚀 基础语法
+## 🚀 Basic Syntax
 
-Mermaid 使用简洁的文本语法来定义图表结构。每个图表类型都有自己的语法规则，但基本概念相通。
+Mermaid uses concise text syntax to define diagram structures. Each diagram type has its own syntax rules, but the basic concepts are consistent.
 
-## 📊 流程图 (Flowchart)
+## 📊 Flowchart
 
-流程图用于展示步骤和决策过程：
+Flowcharts show steps and decision processes:
 
 ```mermaid
 flowchart TD
-    A[开始编写] --> B{是否熟悉语法?}
-    B -->|是| C[直接写图表]
-    B -->|否| D[查看文档]
-    D --> E[学习基础语法]
+    A[Start Writing] --> B{Know the Syntax?}
+    B -->|Yes| C[Write Diagram Directly]
+    B -->|No| D[Check Documentation]
+    D --> E[Learn Basic Syntax]
     E --> C
-    C --> F[测试渲染]
-    F --> G{图表正确?}
-    G -->|是| H[完成!]
-    G -->|否| I[调试修改]
+    C --> F[Test Rendering]
+    F --> G{Diagram Correct?}
+    G -->|Yes| H[Done!]
+    G -->|No| I[Debug & Fix]
     I --> F
 ```
 
-## ⏱️ 时序图 (Sequence Diagram)
+## ⏱️ Sequence Diagram
 
-时序图用于展示不同组件或用户之间的交互顺序：
+Sequence diagrams show the interaction order between different components or users:
 
 ```mermaid
 sequenceDiagram
-    participant 用户
-    participant 博客系统
-    participant Mermaid渲染器
-    participant 浏览器
+    participant User
+    participant Blog System
+    participant Mermaid Renderer
+    participant Browser
 
-    用户->>博客系统: 访问包含图表的文章
-    博客系统->>Mermaid渲染器: 解析Mermaid代码
-    Mermaid渲染器->>Mermaid渲染器: 生成SVG图表
-    Mermaid渲染器->>浏览器: 返回渲染结果
-    浏览器->>用户: 显示可视化图表
+    User->>Blog System: Visit article with diagram
+    Blog System->>Mermaid Renderer: Parse Mermaid code
+    Mermaid Renderer->>Mermaid Renderer: Generate SVG diagram
+    Mermaid Renderer->>Browser: Return rendered result
+    Browser->>User: Display visual diagram
 ```
 
-## 🥧 饼图 (Pie Chart)
+## 🥧 Pie Chart
 
-饼图用于展示数据的比例关系：
+Pie charts show proportional relationships in data:
 
 ```mermaid
 pie
-    title 学习时间分配
-    "阅读文档" : 25
-    "实践练习" : 40
-    "调试问题" : 20
-    "完成项目" : 15
+    title Learning Time Distribution
+    "Reading Documentation" : 25
+    "Practice Exercises" : 40
+    "Debugging Issues" : 20
+    "Completing Projects" : 15
 ```
 
-## 📈 甘特图 (Gantt Chart)
+## 📈 Gantt Chart
 
-甘特图用于项目进度管理：
+Gantt charts are used for project progress management:
 
 ```mermaid
 gantt
-    title 博客开发进度
+    title Blog Development Progress
     dateFormat  YYYY-MM-DD
-    section 准备阶段
-    需求分析   :a1, 2024-10-01, 3d
-    技术选型   :a2, after a1, 2d
-    section 开发阶段
-    核心功能开发 :b1, 2024-10-06, 5d
-    界面优化     :b2, after b1, 3d
-    section 测试阶段
-    功能测试     :c1, after b2, 2d
-    性能优化     :c2, after c1, 2d
+    section Preparation
+    Requirements Analysis   :a1, 2024-10-01, 3d
+    Technology Selection    :a2, after a1, 2d
+    section Development
+    Core Feature Development :b1, 2024-10-06, 5d
+    UI Optimization          :b2, after b1, 3d
+    section Testing
+    Feature Testing          :c1, after b2, 2d
+    Performance Optimization :c2, after c1, 2d
 ```
 
-## 🏗️ 架构图 (Graph)
+## 🏗️ Architecture Diagram (Graph)
 
-架构图用于展示系统结构：
+Architecture diagrams show system structure:
 
 ```mermaid
 graph TB
-    subgraph "前端架构"
+    subgraph "Frontend Architecture"
         A[React] --> B[Next.js]
         B --> C[Tailwind CSS]
         C --> D[shadcn/ui]
     end
 
-    subgraph "内容管理"
-        E[MDX文件] --> F[Markdown处理]
-        F --> G[Mermaid渲染]
-        G --> H[静态生成]
+    subgraph "Content Management"
+        E[MDX Files] --> F[Markdown Processing]
+        F --> G[Mermaid Rendering]
+        G --> H[Static Generation]
     end
 
-    subgraph "部署"
+    subgraph "Deployment"
         H --> I[Vercel]
-        I --> J[CDN分发]
+        I --> J[CDN Distribution]
     end
 
     A --> E
 ```
 
-## 💡 使用技巧
+## 💡 Usage Tips
 
-### 1. 选择合适的图表类型
-- **流程图**：适合展示决策流程和算法步骤
-- **时序图**：适合展示交互过程和时间顺序
-- **饼图**：适合展示比例和百分比数据
-- **甘特图**：适合项目时间线管理
-- **架构图**：适合展示系统结构和关系
+### 1. Choose the Right Diagram Type
+- **Flowchart**: Best for showing decision flows and algorithm steps
+- **Sequence Diagram**: Best for showing interaction processes and time sequences
+- **Pie Chart**: Best for showing proportions and percentage data
+- **Gantt Chart**: Best for project timeline management
+- **Architecture Diagram**: Best for showing system structure and relationships
 
-### 2. 语法要点
-- 使用有意义的节点名称
-- 合理使用连接器的箭头方向
-- 添加子图表来组织复杂结构
-- 使用注释来解释复杂逻辑
+### 2. Syntax Key Points
+- Use meaningful node names
+- Use connector arrow directions appropriately
+- Add subgraphs to organize complex structures
+- Use comments to explain complex logic
 
-### 3. 常见问题
-- **语法错误**：检查括号和引号是否匹配
-- **布局混乱**：使用不同的布局方向 (TD, LR, TB, RL)
-- **节点重叠**：增加节点间距或调整布局
+### 3. Common Issues
+- **Syntax Errors**: Check if brackets and quotes match
+- **Messy Layout**: Use different layout directions (TD, LR, TB, RL)
+- **Overlapping Nodes**: Increase node spacing or adjust layout
 
-## 🎯 最佳实践
+## 🎯 Best Practices
 
-1. **从简单开始**：先创建基础图表，再逐步添加细节
-2. **测试渲染**：经常检查图表是否正确显示
-3. **添加注释**：用注释解释复杂的逻辑结构
-4. **保持整洁**：合理组织节点和连线的布局
+1. **Start Simple**: Create basic diagrams first, then gradually add details
+2. **Test Rendering**: Frequently check if the diagram displays correctly
+3. **Add Comments**: Use comments to explain complex logic structures
+4. **Keep It Clean**: Organize nodes and connections layout appropriately
 
-## 🔄 兼容性说明
+## 🔄 Compatibility Notes
 
-我们的博客系统支持：
-- ✅ 所有主流 Mermaid 图表类型
-- ✅ 自动适配深色/浅色主题
-- ✅ 响应式设计，适配移动端
-- ✅ 错误处理和友好提示
+Our blog system supports:
+- ✅ All mainstream Mermaid diagram types
+- ✅ Automatic adaptation for dark/light themes
+- ✅ Responsive design, mobile-friendly
+- ✅ Error handling and user-friendly prompts
 
-现在你可以在博客文章中轻松创建专业的图表了！开始尝试创建你的第一个 Mermaid 图表吧！
+Now you can easily create professional diagrams in your blog posts! Start creating your first Mermaid diagram!

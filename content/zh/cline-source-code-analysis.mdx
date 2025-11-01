@@ -1,102 +1,103 @@
 ---
-title: "Deep Dive into Cline Source Code: Architecture and Implementation of an AI-Driven VS Code Assistant"
+title: "Cline源码深度解析：AI驱动的VS Code智能助手架构与实现"
 publishedAt: "2024-12-19"
-summary: "An in-depth analysis of Cline VS Code extension's source code architecture, including core component design, task execution flow, tool invocation system, security mechanisms, and more. Helps developers understand how AI-driven intelligent assistants are implemented."
+summary: "深入分析Cline VS Code插件的源码架构，包括核心组件设计、任务执行流程、工具调用系统、安全机制等，帮助开发者理解AI驱动的智能助手实现原理"
 image: "/cline-source-code-analysis.jpg"
-keywords:
-  - "Cline source code analysis"
-  - "VS Code extension development"
-  - "AI intelligent assistant"
-  - "tool invocation system"
-  - "MCP protocol"
-  - "prompt management"
-  - "context management"
-  - "file operations"
-  - "browser automation"
-  - "security checkpoints"
+keywords: 
+  - "Cline源码分析"
+  - "VS Code插件开发"
+  - "AI智能助手"
+  - "工具调用系统"
+  - "MCP协议"
+  - "提示词管理"
+  - "上下文管理"
+  - "文件操作"
+  - "浏览器自动化"
+  - "安全检查点"
 author: "zjy365"
-category: "Technical Analysis"
+category: "技术分析"
 tags:
   - "Cline"
   - "VS Code"
-  - "AI Assistant"
-  - "Source Code Analysis"
-  - "Tool Invocation"
+  - "AI助手"
+  - "源码分析"
+  - "工具调用"
   - "MCP"
   - "TypeScript"
-  - "Extension Development"
-readingTime: "15 minutes"
+  - "插件开发"
+readingTime: "15分钟"
 ---
 
-# Deep Dive into Cline Source Code: Architecture and Implementation of an AI-Driven VS Code Assistant
+# Cline源码深度解析：AI驱动的VS Code智能助手架构与实现
 
-> A tool centered on **prompt context management** and **tool invocation**.
-> Tools are used for finding reference content, MCP is a tool, file operations are tools, task execution is a tool.
+> 以**提示词上下文管理**及**工具调用**为核心的工具。
+查找参考内容用工具， MCP 是工具，操作文件的是工具，执行任务是工具。
+> 
 
-## What is Cline?
+## 什么是Cline？
 
-Cline is an intelligent assistant plugin based on VS Code that provides developers with intelligent task-processing capabilities through AI technology. In modern software development, developers often need to switch between multiple tools, handle lots of repetitive work, while maintaining deep understanding of code and business logic. This not only reduces development efficiency but also increases cognitive load.
+Cline 是一个基于 VS Code 的智能助手插件，它通过 AI 技术为开发者提供智能化的任务处理能力。在现代软件开发中，开发者经常需要在多个工具间切换，处理大量重复性工作，同时还要维持对代码和业务的深入理解。这不仅降低了开发效率，还增加了认知负担。
 
-Cline is designed to solve these problems. It deeply integrates AI capabilities with development tools, providing a unified intelligent development environment. By intelligently understanding developer intent, automating development tasks, and maintaining continuous understanding of project context, Cline significantly improves development efficiency and experience.
+Cline 正是为解决这些问题而设计。它将 AI 能力与开发工具深度集成，提供了一个统一的智能化开发环境。通过智能理解开发者意图，自动化执行开发任务，并保持对项目上下文的持续理解，Cline 显著提升了开发效率和体验。
 
-## Core Architecture Design
+## 核心架构设计
 
-Cline plugin adopts modular design, consisting of the following core components:
+Cline 插件采用模块化设计，主要由以下核心组件构成：
 
-- ClineProvider: Manages state and UI interaction
-- Cline: Core business logic processing
-- External service integration: Including AI services, authentication services, etc.
-- Tool system: Provides file operations, command execution, and other capabilities
+- ClineProvider：负责状态管理和 UI 交互
+- Cline：核心业务逻辑处理
+- 外部服务集成：包括 AI 服务、认证服务等
+- 工具系统：提供文件操作、命令执行等能力
 
-Through the collaborative work of these components, Cline achieves four core objectives:
+通过这些组件的协同工作，Cline 实现了四个核心目标：
 
-1. **Tool Unification**
-    - Integrate file operations, command execution, browser control, and other capabilities in VS Code
-    - Provide a unified interface to execute various development tasks
-    - Reduce cognitive load from tool switching
-2. **Intelligent Automation**
-    - Understand developer intent through AI
-    - Automatically complete repetitive work
-    - Intelligent code understanding and generation
-3. **Context Preservation**
-    - Maintain continuous understanding of project structure
-    - Keep state consistent during task execution
-    - Support long-running complex tasks
-4. **Security and Control**
-    - Provide operation confirmation mechanisms
-    - Support task pause and resume
-    - Implement rollback capabilities for critical operations
+1. **工具统一**
+    - 在 VS Code 中集成文件操作、命令执行、浏览器控制等能力
+    - 提供统一的界面来执行各种开发任务
+    - 减少工具切换带来的认知负担
+2. **智能自动化**
+    - 通过 AI 理解开发者意图
+    - 自动完成重复性工作
+    - 智能化的代码理解和生成
+3. **上下文保持**
+    - 维护对项目结构的持续理解
+    - 在任务执行过程中保持状态连贯
+    - 支持长时间运行的复杂任务
+4. **安全可控**
+    - 提供操作确认机制
+    - 支持任务的暂停和恢复
+    - 实现关键操作的回滚能力
 
-## 1. Overall Architecture Overview
+## 1. 整体架构概览
 
 - **VS Code Extension Layer**
-    - extension.ts: Plugin entry point
-    - User interface components:
+    - extension.ts: 插件入口点
+    - 用户界面组件：
         - Webview Panel
         - Sidebar
         - Commands
 - **Core System**
-    - ClineProvider: State management and view control
-    - Cline: Core business logic
-    - Core modules:
-        - assistant-message: Message processing
-        - ignore: Ignore rules
-        - prompts: Prompt management
-        - sliding-window: Conversation management
-        - webview: UI interaction
+    - ClineProvider: 状态管理和视图控制
+    - Cline: 核心业务逻辑
+    - 核心模块：
+        - assistant-message：消息处理
+        - ignore：忽略规则
+        - prompts：提示管理
+        - sliding-window：对话管理
+        - webview：UI 交互
 - **State Management**
-    - Global State: Global state
-    - Workspace State: Workspace state
-    - Secrets Storage: Secret storage
+    - Global State：全局状态
+    - Workspace State：工作区状态
+    - Secrets Storage：密钥存储
 - **External Services**
-    - AI Services:
+    - AI Services：
         - Anthropic API
         - OpenAI API
         - OpenRouter
-    - Authentication: Auth services
-    - Browser Control: Browser control
+    - Authentication：认证服务
+    - Browser Control：浏览器控制
 
-### 1.1 Core Architecture Diagram
+### 1.1 核心架构图
 
 ```mermaid
 graph TB
@@ -112,7 +113,7 @@ graph TB
     subgraph Core[Core System]
         CP[ClineProvider]
         CL[Cline]
-
+        
         subgraph Modules[Core Modules]
             AM[assistant-message]
             IG[ignore]
@@ -143,15 +144,15 @@ graph TB
     EXT -->|activates| CP
     EXT -->|registers| UI
     CP -->|initializes| CL
-
+    
     %% Core Interactions
     CP -->|manages| State
     CL -->|uses| Modules
-
+    
     %% UI Flow
     UI -->|communicates via| CP
     CP -->|updates| UI
-
+    
     %% Service Integration
     CL -->|calls| APIs
     CP -->|manages| AUTH
@@ -166,22 +167,26 @@ graph TB
     class Core,Modules core
     class State state
     class Services,APIs service
+    
+    
+    
+    
 ```
 
-### 1.3 Plugin Entry Point
+### 1.3 插件入口
 
 ```tsx
 export function activate(context: vscode.ExtensionContext) {
-    // 1. Create output channel
+    // 1. 创建输出通道
     outputChannel = vscode.window.createOutputChannel("Cline");
 
-    // 2. Initialize logging system
+    // 2. 初始化日志系统
     Logger.initialize(outputChannel);
 
-    // 3. Create sidebar provider
+    // 3. 创建侧边栏提供者
     const sidebarProvider = new ClineProvider(context, outputChannel);
 
-    // 4. Register sidebar view
+    // 4. 注册侧边栏视图
     context.subscriptions.push(
         vscode.window.registerWebviewViewProvider(
             ClineProvider.sideBarId,
@@ -195,13 +200,13 @@ export function activate(context: vscode.ExtensionContext) {
     );
 }
 
-// Registers multiple VS Code commands:
-- "cline.plusButtonClicked" // New conversation
-- "cline.mcpButtonClicked"  // MCP button
-- "cline.popoutButtonClicked" // Pop out to new tab
-- "cline.settingsButtonClicked" // Settings
-- "cline.historyButtonClicked"  // History
-- "cline.accountLoginClicked"   // Account login
+// 注册了多个VS Code命令：
+- "cline.plusButtonClicked" // 新建对话
+- "cline.mcpButtonClicked"  // MCP按钮
+- "cline.popoutButtonClicked" // 弹出到新标签页
+- "cline.settingsButtonClicked" // 设置
+- "cline.historyButtonClicked"  // 历史记录
+- "cline.accountLoginClicked"   // 账号登录
 ```
 
 ### 1.4 ClineProvider.ts
@@ -210,7 +215,7 @@ export function activate(context: vscode.ExtensionContext) {
 graph TB
     subgraph ClineProvider[ClineProvider.ts]
         direction TB
-
+        
         subgraph VSCodeIntegration[VS Code Integration]
             WV[Webview View]
             WP[Webview Panel]
@@ -293,7 +298,7 @@ graph TB
 graph TB
     subgraph Cline[Cline.ts]
         direction TB
-
+        
         subgraph Settings[Settings]
             CFG[API & System Config]
         end
@@ -339,51 +344,51 @@ graph TB
     class UI ui
 ```
 
-### 1.6 Prompts
+### 1.6 提示词
 
-Divided into several parts:
+分为几个部分：
 
-1. Role definition: Defines role information
-2. Tool invocation:
-    1. Tool definition
-    2. Built-in tool list:
-        1. File operations: read file, write file (overwrite), replace file content (diff form), search files, list files, list code definitions
-        2. Browser operations: Browser actions (using puppeteer for access and click operations, executes and returns screenshots and console logs)
-        3. Terminal operations: Execute commands
-        4. MCP operations: MCP tool invocation and resource requests
-        5. Basic operations: Ask user questions, output command results (for displaying task completion results, marks end)
-        6. Planning mode: Planning mode definition (helps users plan and brainstorm solutions)
-    3. Invocation examples and guidelines
-3. MCP services: MCP definition, dynamically inject MCP server list, MCP creation examples and guidelines
-4. Difference between replace file and create file: Definitions and use cases for both, advantages, considering automatic formatting in user's editor after rewrite (directly output final state), workflow suggestions
-5. ACT mode and PLAN mode: Let AI understand act mode and plan mode, act mode can call all tools except **plan_mode_response**, while plan mode uses **plan_mode_response**
-6. Capabilities: Specify what AI can do, like which tools can be called and what these tools are for
-7. Rules: Specify rules AI must follow, what can and cannot be done
-8. System information: Operating system, default shell, home directory, current working directory
-9. Objectives: Macro-level specification of steps for AI to complete tasks
-10. User-defined guidelines
+1. 角色定义：定义角色信息
+2. 工具调用：
+    1. 工具定义
+    2. 内置工具列表：
+        1. 文件操作：读文件，写文件（覆盖），替换文件内容（diff形式），查文件，list 文件，list代码定义
+        2. 浏览器操作：浏览器操作（使用 puppeteer访问和点击操作，执行操作并且返回截图和控制台日志）
+        3. 终端操作：执行命令
+        4. MCP 操作：MCP 工具调用和资源请求
+        5. 基础操作：询问用户问题，输出命令结果（用于展示任务完成后的结果，标志结束）
+        6. 规划模式：规划模式定义（帮助用户规划和脑暴解决方案）
+    3. 调用例子和调用指南
+3. MCP 服务：MCP 定义， 动态注入 MCP服务器列表，MCP 创建示例和指南
+4. 替换文件和创建文件的区别：两者的定义和使用场景以及优势，考虑改写之后用户编辑器的自动格式化（直接输出最终状态），工作流程的一些建议
+5. ACT模式和 PLAN 模式：让 AI 理解 act 模式和 plan 模式，act 模式可以调用除**plan_mode_response**工具之外的所有工具，而 plan 模式则使用**plan_mode_response**
+6. 能力：指定 AI 具有什么能力，比如能调用哪些工具以及这些工具是干什么的
+7. 规则：指定 AI 需要遵守的规则，能做什么，不能做什么
+8. 系统信息：操作系统、默认 shell，home 目录，当前工作目录
+9. 目标：宏观指定AI 完成任务的步骤
+10. 用户自定义指南
+源代码位置：https://github.com/cline/cline/blob/main/src/core/prompts/system.ts
 
-Source code location: https://github.com/cline/cline/blob/main/src/core/prompts/system.ts
 
-## 2. Core Execution Flow
+## 2. 核心执行流程
 
-### 2.1 Task Execution Flow
+### 2.1 任务执行流程
 
-1. **Task Initialization**
-    - User inputs task through Webview interface
-    - Webview passes message to ClineProvider
-    - ClineProvider creates and initializes Cline instance
-2. **Task Execution Loop**
-    - Cline sends request to AI service
-    - AI service returns response and possible tool calls
-    - Cline parses response and executes corresponding tools
-    - Operations requiring user confirmation request approval
-    - Tool execution results returned to Cline
-    - Cline returns results to AI service for continued processing
-3. **Task Completion**
-    - When all necessary steps are complete
-    - Cline returns final result to user
-    - Task execution completed
+1. **任务初始化**
+    - 用户通过 Webview 界面输入任务
+    - Webview 将消息传递给 ClineProvider
+    - ClineProvider 创建和初始化 Cline 实例
+2. **任务执行循环**
+    - Cline 向 AI 服务发送请求
+    - AI 服务返回响应和可能的工具调用
+    - Cline 解析响应并执行相应的工具
+    - 需要用户确认的操作会请求用户确认
+    - 工具执行结果返回给 Cline
+    - Cline 将结果返回给 AI 服务继续处理
+3. **任务完成**
+    - 当所有必要的步骤都完成后
+    - Cline 向用户返回最终结果
+    - 任务执行完成
 
 ```mermaid
 sequenceDiagram
@@ -394,53 +399,55 @@ sequenceDiagram
     participant Tools
     participant AI
 
-    User->>Webview: Input task
-    Webview->>ClineProvider: Send message
-    ClineProvider->>Cline: Create instance
+    User->>Webview: 输入任务
+    Webview->>ClineProvider: 发送消息
+    ClineProvider->>Cline: 创建实例
 
     activate Cline
     loop Task Loop
-        Cline->>AI: Send request
-        AI-->>Cline: Return response
-        Cline->>Tools: Execute tool
-        Tools->>User: Request confirmation
-        User-->>Tools: Confirm execution
-        Tools-->>Cline: Return result
-        Cline->>AI: Return execution result
+        Cline->>AI: 发送请求
+        AI-->>Cline: 返回响应
+        Cline->>Tools: 执行工具
+        Tools->>User: 请求确认
+        User-->>Tools: 确认执行
+        Tools-->>Cline: 返回结果
+        Cline->>AI: 返回执行结果
     end
-    Cline-->>User: Task complete
+    Cline-->>User: 任务完成
     deactivate Cline
+
 ```
 
-### 2.2 Tool Execution Flow
+### 2.2 工具执行流程
 
 ```mermaid
 flowchart TD
-    A[AI Request] --> B{AI determines tool type}
-    B -->|Command| C[Command execution]
-    B -->|File| D[File operations]
-    B -->|API| E[API calls]
-    B -->|Browser| F[Browser operations]
-    C --> G{Needs confirmation?}
-    G -->|Yes| H[User confirmation]
-    G -->|No| I[Direct execution]
+    A[AI 请求] --> B{AI 进行工具类型判断}
+    B -->|Command| C[命令执行]
+    B -->|File| D[文件操作]
+    B -->|API| E[API 调用]
+    B -->|Browser| F[浏览器操作]
+    C --> G{需要确认?}
+    G -->|Yes| H[用户确认]
+    G -->|No| I[直接执行]
     H --> I
-    I --> J[Collect results]
-    D --> K[Permission check]
-    K --> L[Execute operation]
+    I --> J[收集结果]
+    D --> K[权限检查]
+    K --> L[执行操作]
     L --> J
-    E --> M[Validate params]
-    M --> N[Call API]
+    E --> M[验证参数]
+    M --> N[调用 API]
     N --> J
-    F --> O[Browser session]
-    O --> P[Execute action]
+    F --> O[浏览器会话]
+    O --> P[执行动作]
     P --> J
-    J --> Q[Return to AI]
+    J --> Q[返回给 AI]
+
 ```
 
-## 3. Core Component Implementation
+## 3. 核心组件实现
 
-### 3.1 ClineProvider Cline Core Classes
+### 3.1 ClineProvider Cline 核心类
 
 ```tsx
 class ClineProvider implements vscode.WebviewViewProvider {
@@ -448,19 +455,19 @@ class ClineProvider implements vscode.WebviewViewProvider {
     private view?: vscode.WebviewView
     private context: vscode.ExtensionContext
 
-    // Core management features
+    // 核心管理功能
     async initClineWithTask(task?: string)
     async handleMessage(message: Message)
     async updateState(state: State)
-
-    // Define global filenames
-    export const GlobalFileNames = {
-        apiConversationHistory: "api_conversation_history.json", // API conversation history
-        uiMessages: "ui_messages.json", // UI messages
-        openRouterModels: "openrouter_models.json", // OpenRouter models
-        mcpSettings: "cline_mcp_settings.json", // MCP settings
-        clineRules: ".clinerules", // Cline rules
-    }
+    
+    // 定义全局文件名
+		export const GlobalFileNames = {
+			apiConversationHistory: "api_conversation_history.json", // API对话历史
+			uiMessages: "ui_messages.json", // UI消息
+			openRouterModels: "openrouter_models.json", // OpenRouter模型
+			mcpSettings: "cline_mcp_settings.json", // MCP设置
+			clineRules: ".clinerules", // Cline规则
+		}
 }
 ```
 
@@ -468,16 +475,16 @@ class ClineProvider implements vscode.WebviewViewProvider {
 class ClineProvider {
     constructor(context: vscode.ExtensionContext) {
         this.context = context
-        this.cline = undefined  // Lazy initialization
+        this.cline = undefined  // 延迟初始化
     }
 
     async initClineWithTask(task?: string) {
-        await this.clearTask()  // Clear existing tasks
+        await this.clearTask()  // 清理现有任务
 
-        // Get configuration
+        // 获取配置
         const config = await this.getState()
 
-        // Create new instance
+        // 创建新实例
         this.cline = new Cline(
             this,
             config.apiConfiguration,
@@ -488,63 +495,65 @@ class ClineProvider {
         )
     }
 }
+
 ```
 
 ```tsx
 export class Cline {
-    // Core properties
+    // 核心属性
     readonly taskId: string;
     api: ApiHandler;
     private terminalManager: TerminalManager;
     private urlContentFetcher: UrlContentFetcher;
     browserSession: BrowserSession;
 
-    // State control
+    // 状态控制
     private didEditFile: boolean = false;
     private abort: boolean = false;
     private consecutiveMistakeCount: number = 0;
 
-    // History
+    // 历史记录
     apiConversationHistory: Anthropic.MessageParam[] = [];
     clineMessages: ClineMessage[] = [];
 
-    // Configuration system
+    // 配置系统
     autoApprovalSettings: AutoApprovalSettings;
     private browserSettings: BrowserSettings;
     private chatSettings: ChatSettings;
 
-    // Core task execution method
+    // 任务执行核心方法
     async startTask(task?: string, images?: string[]): Promise<void> {
-        // Initialize state
+        // 初始化状态
         this.clineMessages = [];
         this.apiConversationHistory = [];
 
-        // Update interface
+        // 更新界面
         await this.providerRef.deref()?.postStateToWebview();
 
-        // Display task
+        // 显示任务
         await this.say("text", task, images);
 
-        // Mark initialization complete
+        // 标记初始化完成
         this.isInitialized = true;
 
-        // Build initial message
+        // 构建初始消息
         let imageBlocks = formatResponse.imageBlocks(images);
 
-        // Start task loop
+        // 启动任务循环
         await this.initiateTaskLoop(
             [{
                 type: "text",
                 text: `<task>\\n${task}\\n</task>`,
             },
             ...imageBlocks],
-            true // isNewTask flag
+            true // isNewTask 标记
         );
     }
 }
+
 ```
 
-### 3.2 Task Loop Implementation
+### 3.2 任务循环实现
 
 ```tsx
 private async initiateTaskLoop(
@@ -555,7 +564,7 @@ private async initiateTaskLoop(
     let includeFileDetails = true;
 
     while (!this.abort) {
-        // Core request processing
+        // 核心请求处理
         const didEndLoop = await this.recursivelyMakeClineRequests(
             nextUserContent,
             includeFileDetails,
@@ -567,7 +576,7 @@ private async initiateTaskLoop(
         if (didEndLoop) {
             break;
         } else {
-            // Handle case where tools weren't used
+            // 处理未使用工具的情况
             nextUserContent = [{
                 type: "text",
                 text: formatResponse.noToolsUsed(),
@@ -578,28 +587,29 @@ private async initiateTaskLoop(
 }
 ```
 
-### 3.3 Task Termination Conditions
+### 3.3 任务结束的条件
 
 ```tsx
-// 1. Cases where this.abort is true:
-- User manually aborts
-- Serious error occurs
-- Cline instance is destroyed
+// 1. this.abort 为 true 的情况:
+- 用户手动中止
+- 发生严重错误
+- Cline 实例被销毁
 
-// 2. Cases where didEndLoop is true:
-- Task successfully completed (using attempt_completion tool)
-- Maximum error count reached
-- Task marked as complete
+// 2. didEndLoop 为 true 的情况:
+- 任务成功完成(使用 attempt_completion 工具)
+- 达到最大错误次数
+- 任务被标记为完成
 
-// 3. Other termination conditions:
-- Too many consecutive errors
-- API call failure
-- Tool execution failure
+// 3. 其他终止条件:
+- 连续错误次数过多
+- API 调用失败
+- 工具执行失败
+
 ```
 
-## 4. Request Processing System
+## 4. 请求处理系统
 
-### 4.1 Recursive Request Processing
+### 4.1 递归请求处理
 
 ```tsx
 private async recursivelyMakeClineRequests(
@@ -607,43 +617,44 @@ private async recursivelyMakeClineRequests(
     includeFileDetails: boolean,
     isNewTask: boolean
 ): Promise<boolean> {
-    // 1. Error checking
+    // 1. 错误检查
     if (this.consecutiveMistakeCount >= MAX_CONSECUTIVE_MISTAKES) {
         throw new Error("Too many consecutive mistakes")
     }
 
     try {
-        // 2. Prepare messages
+        // 2. 准备消息
         const messages = this.prepareMessages(userContent, includeFileDetails)
 
-        // 3. Send API request
+        // 3. 发送 API 请求
         const response = await this.api.sendRequest(messages)
 
-        // 4. Process response
+        // 4. 处理响应
         if (response.type === "completion") {
-            return true  // Task complete
+            return true  // 任务完成
         } else if (response.type === "tool_use") {
             await this.handleToolUse(response.tool)
-            return false  // Continue execution
+            return false  // 继续执行
         }
     } catch (error) {
         this.handleError(error)
         return true
     }
 }
+
 ```
 
-### 4.2 Message Preparation
+### 4.2 消息准备
 
 ```tsx
 private prepareMessages(
     userContent: UserContent,
     includeFileDetails: boolean
 ): MessageParam[] {
-    // 1. Build base messages
+    // 1. 构建基础消息
     const messages = [...this.apiConversationHistory]
 
-    // 2. Add environment details
+    // 2. 添加环境详情
     if (includeFileDetails) {
         messages.push({
             type: "environment_details",
@@ -651,7 +662,7 @@ private prepareMessages(
         })
     }
 
-    // 3. Add user content
+    // 3. 添加用户内容
     messages.push({
         type: "user_content",
         content: userContent
@@ -659,14 +670,15 @@ private prepareMessages(
 
     return messages
 }
+
 ```
 
-### 4.3 API Communication System
+### 4.3 API 通信系统
 
 ```tsx
 class ApiHandler {
     async *attemptApiRequest(previousApiReqIndex: number) {
-        // 1. System prompt preparation
+        // 1. 系统提示准备
         let systemPrompt = await SYSTEM_PROMPT(
             cwd,
             this.api.getModel().info.supportsComputerUse,
@@ -674,12 +686,12 @@ class ApiHandler {
             this.browserSettings
         );
 
-        // 2. Context preprocessing
+        // 2. 上下文预处理
         const { truncatedHistory, deletedRange } = this.truncateHistoryToFitContext(
             previousApiReqIndex
         );
 
-        // 3. Streaming communication
+        // 3. 流式通信
         const stream = this.api.createMessage(systemPrompt, truncatedHistory);
         yield* this.handleStreamResponse(stream);
     }
@@ -703,40 +715,41 @@ class ApiHandler {
         return { truncatedHistory: this.history };
     }
 }
+
 ```
 
-### 4.4 Tools
+### 4.4 工具
 
 ```tsx
 export const toolUseNames = [
-    "execute_command",
-    "read_file",
-    "write_to_file",
-    "replace_in_file",
-    "search_files",
-    "list_files",
-    "list_code_definition_names",
-    "browser_action",
-    "use_mcp_tool",
-    "access_mcp_resource",
-    "ask_followup_question",
-    "plan_mode_response",
-    "attempt_completion",
+	"execute_command",
+	"read_file",
+	"write_to_file",
+	"replace_in_file",
+	"search_files",
+	"list_files",
+	"list_code_definition_names",
+	"browser_action",
+	"use_mcp_tool",
+	"access_mcp_resource",
+	"ask_followup_question",
+	"plan_mode_response",
+	"attempt_completion",
 ] as const
 ```
 
-### 4.5 Terminal Command Execution Tool
+### 4.5 终端命令执行工具
 
 ```tsx
 async executeCommandTool(command: string): Promise<[boolean, ToolResponse]> {
-    // 1. Terminal management
+    // 1. 终端管理
     const terminalInfo = await this.terminalManager.getOrCreateTerminal(cwd)
     terminalInfo.terminal.show()
 
-    // 2. Execute command
+    // 2. 执行命令
     const process = this.terminalManager.runCommand(terminalInfo, command)
 
-    // 3. Output processing
+    // 3. 输出处理
     process.on("line", (line) => {
         result += line + "\\n"
         if (!didContinue) {
@@ -746,37 +759,38 @@ async executeCommandTool(command: string): Promise<[boolean, ToolResponse]> {
         }
     })
 
-    // 4. Wait for completion
+    // 4. 等待完成
     await process
 
-    // 5. Return result
+    // 5. 返回结果
     return [completed, formatResult(result)]
 }
+
 ```
 
-### 4.6 File Operation Tools
+### 4.6文件操作工具
 
 ```tsx
 class FileOperations implements Tool {
-    // File reading
+    // 文件读取
     async readFile(path: string): Promise<string> {
         return fs.readFile(path, 'utf8');
     }
 
-    // File writing
+    // 文件写入
     async writeFile(path: string, content: string): Promise<void> {
         await this.ensureDirectoryExists(path);
         await fs.writeFile(path, content);
     }
 
-    // File replacement
+    // 文件替换
     async replaceInFile(path: string, diff: string): Promise<void> {
         const content = await this.readFile(path);
         const newContent = await constructNewFileContent(diff, content);
         await this.writeFile(path, newContent);
     }
 
-    // File listing
+    // 文件列表
     async listFiles(path: string, recursive: boolean): Promise<string[]> {
         if (recursive) {
             return this.recursiveListFiles(path);
@@ -784,26 +798,27 @@ class FileOperations implements Tool {
         return fs.readdir(path);
     }
 }
+
 ```
 
-## 5. Security Mechanism Implementation
+## 5. 安全机制实现
 
-### 5.1 File Operation Security
+### 5.1 文件操作安全
 
 ```tsx
 class FileOperationApproval {
     async checkFileAccess(operation: FileOperation): Promise<boolean> {
-        // 1. Path safety check
+        // 1. 路径安全检查
         if (!this.isPathSafe(operation.path)) {
             return false;
         }
 
-        // 2. Operation permission check
+        // 2. 操作权限检查
         if (!this.hasPermission(operation.type)) {
             return false;
         }
 
-        // 3. Content safety check
+        // 3. 内容安全检查
         if (operation.type === 'write' && !this.isContentSafe(operation.content)) {
             return false;
         }
@@ -812,15 +827,16 @@ class FileOperationApproval {
     }
 
     private isPathSafe(path: string): boolean {
-        // Check if path is within working directory
-        // Prevent directory traversal attacks
+        // 检查路径是否在工作目录内
+        // 防止目录遍历攻击
         const normalizedPath = normalizePath(path);
         return isWithinWorkspace(normalizedPath);
     }
 }
+
 ```
 
-### 5.2 Command Execution Security
+### 5.2 命令执行安全
 
 ```tsx
 class CommandSecurity {
@@ -828,21 +844,21 @@ class CommandSecurity {
         'rm -rf',
         'format',
         'shutdown',
-        // ... other dangerous commands
+        // ... 其他危险命令
     ]);
 
     async validateCommand(command: string): Promise<boolean> {
-        // 1. Check if restricted command
+        // 1. 检查是否是受限命令
         if (this.isRestrictedCommand(command)) {
             return false;
         }
 
-        // 2. Check command permissions
+        // 2. 检查命令权限
         if (!await this.checkCommandPermissions(command)) {
             return false;
         }
 
-        // 3. Check resource limits
+        // 3. 检查资源限制
         if (!this.checkResourceLimits(command)) {
             return false;
         }
@@ -856,24 +872,25 @@ class CommandSecurity {
         );
     }
 }
+
 ```
 
-### 5.3 Checkpoint System
+### 5.3 检查点系统
 
-Three scenarios: task (restore task messages), workspace (restore workspace files), taskAndWorkspace (restore both task messages and workspace files)
+三种情况：task（恢复任务消息）、workspace（恢复工作区文件）、taskAndWorkspace（同时恢复任务消息和工作区文件）
 
-Core mechanism: ShadowGit (changes in main repository don't affect Shadow repository, changes in shadow repository form **uncommitted changes** in main repository)
+核心机制：ShadowGit（主仓库的变更不会影响到Shadow 仓库，shadow 仓库的变更会形成主仓库的**未提交的更改**）
 
-Core flow:
+核心流程：
 
-1. If restoring workspace or taskAndWorkspace, first initialize checkpointTracker, and directly restore workspace to specified git commit through resetHead.
-2. For task or taskAndWorkspace, we also need to restore task history messages, while recording rolled-back API resource consumption
+1. 如果恢复 workspace 或 taskAndWorkspace，则会首先初始化 checkpointTracker，并通过 resetHead 直接将工作区恢复到指定 git commit。
+2. 对于 task 或 taskAndWorkspace，我们还需要恢复 task 历史消息记录，同时记录回滚的 APi 资源消耗
 
 ```tsx
 class CheckpointSystem {
     private checkpoints: Map<string, Checkpoint> = new Map();
 
-    // Create checkpoint
+    // 创建检查点
     async createCheckpoint(): Promise<string> {
         const checkpoint = {
             id: generateId(),
@@ -886,7 +903,7 @@ class CheckpointSystem {
         return checkpoint.id;
     }
 
-    // Restore checkpoint
+    // 恢复检查点
     async restoreCheckpoint(id: string): Promise<void> {
         const checkpoint = this.checkpoints.get(id);
         if (!checkpoint) {
@@ -897,57 +914,62 @@ class CheckpointSystem {
         await this.restoreFiles(checkpoint.files);
     }
 }
+
 ```
 
-## 6. File Storage System
+## 6. 文件存储系统
 
-File storage is mainly divided into the following categories:
+文件存储主要分为以下几类：
 
-Task conversation flow, configuration files (mainly mcp server info), mcp server code, custom prompts (.clinerules)
+Task对话流，配置文件（主要是 mcp服务器信息），mcp 服务端代码，自定义prompt（.clinerules）
 
-**Task Storage**
+**Task 存储**
 
-~/Library/Application\ Support/Code/User/globalStorage/extension-name/tasks/task-ID
+~/Library/Application\ Support/Code/User/globalStorage/扩展名/tasks/任务ID
 
-- api_conversation_history.json: Stores messages and context
-- ui_messages.json: Stores UI-displayed information
-- checkpoints: Checkpoint information
-    - .git: Stores shadow repository data recording checkpoints
+- api_conversation_history.json：存储消息和上下文
+    
+ 
+- ui_messages.json：存储 UI 上显示的信息
+    
+ 
+- checkpoints：检查点信息
+    - .git：存储记录检查点的影子仓库数据
 
-**Configuration Storage**
+**配置信息存储**
 
-~/Library/Application\ Support/Code/User/globalStorage/extension-name/settings
+~/Library/Application\ Support/Code/User/globalStorage/扩展名/settings
 
-- cline_mcp_settings.json: Stores mcp info, including ID, parameters, environment variables, etc.
+- cline_mcp_settings.json：存储 mcp 的信息，包括ID、参数，环境变量等信息
+    
+**mcp服务端代码存储位置**
 
-**MCP Server Code Storage Location**
+- ~/Documents/Cline/MCP：这个文件夹存储 mcp 服务器的代码位置
 
-- ~/Documents/Cline/MCP: This folder stores mcp server code location
+## 7. 技术细节与实现要点
 
-## 7. Technical Details and Implementation Points
+TreeSitter：使用 web-tree-sitter 进行代码文件的解析和提取
 
-TreeSitter: Uses web-tree-sitter for code file parsing and extraction
+## 总结与学习收获
 
-## Summary and Learning Takeaways
+通过深入分析Cline的源码架构，我们可以总结出以下几个关键要点：
 
-Through in-depth analysis of Cline's source code architecture, we can summarize the following key points:
+### 核心设计理念
+1. **模块化架构**：清晰的组件分离，便于维护和扩展
+2. **工具统一**：通过统一的工具调用接口，简化开发流程
+3. **上下文保持**：智能的对话管理和状态维护
+4. **安全可控**：完善的安全机制和检查点系统
 
-### Core Design Philosophy
-1. **Modular Architecture**: Clear component separation, easy to maintain and extend
-2. **Tool Unification**: Simplify development workflow through unified tool invocation interface
-3. **Context Preservation**: Intelligent conversation management and state maintenance
-4. **Security and Control**: Comprehensive security mechanisms and checkpoint system
+### 技术实现亮点
+1. **递归任务循环**：优雅的任务执行流程设计
+2. **流式API通信**：高效的AI服务集成
+3. **MCP协议支持**：标准化的工具调用协议
+4. **ShadowGit机制**：创新的检查点恢复方案
 
-### Technical Implementation Highlights
-1. **Recursive Task Loop**: Elegant task execution flow design
-2. **Streaming API Communication**: Efficient AI service integration
-3. **MCP Protocol Support**: Standardized tool invocation protocol
-4. **ShadowGit Mechanism**: Innovative checkpoint recovery solution
+### 学习价值
+- **VS Code插件开发**：了解大型插件的架构设计
+- **AI工具集成**：学习如何将AI能力集成到开发工具中
+- **系统安全设计**：理解复杂系统的安全机制实现
+- **状态管理**：掌握复杂应用的状态管理策略
 
-### Learning Value
-- **VS Code Extension Development**: Understanding large-scale plugin architecture design
-- **AI Tool Integration**: Learning how to integrate AI capabilities into development tools
-- **System Security Design**: Understanding security mechanism implementation in complex systems
-- **State Management**: Mastering state management strategies for complex applications
-
-Cline's successful implementation provides excellent reference for AI-driven development tools, and its architecture design and technology choices are worth in-depth learning and reference.
+Cline的成功实现为AI驱动的开发工具提供了很好的参考，其架构设计和技术选型都值得深入学习和借鉴。
