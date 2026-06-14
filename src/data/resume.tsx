@@ -75,6 +75,67 @@ export const DATA = {
   projects: [
 
     {
+      title: "Flowmote",
+      href: "https://flowmote.sealosgzg.site/",
+      dates: "2026 - Present",
+      active: true,
+      description:
+        "Local-first mobile control plane for Codex and CLI agents. Start, monitor, approve, and continue coding agent runs from your phone while code, tools, and execution stay on your Mac.",
+      technologies: [
+        "Expo",
+        "React Native",
+        "TypeScript",
+        "Node.js",
+        "WebSocket",
+        "Codex",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://flowmote.sealosgzg.site/",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "/flowmote.png",
+      video: "",
+    },
+    {
+      title: "AIVIVE",
+      dates: "2026 - Present",
+      active: true,
+      description:
+        "Recursive AI protocol built around an AI image feed and creator economy loop. Uses product activity and programmable revenue routing to connect AI creation with on-chain ecosystem mechanics.",
+      technologies: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "AI",
+        "Solana",
+      ],
+      links: [],
+      image: "/aivive.png",
+      video: "",
+    },
+    {
+      title: "ToolRelay",
+      dates: "2026 - Present",
+      active: true,
+      description:
+        "Capability relay for AI agents. Gives Codex, Claude, Cursor, and MCP clients one wallet and one API surface for web research, page reading, image generation, document parsing, decks, and business tools.",
+      technologies: [
+        "Hono",
+        "Next.js",
+        "TypeScript",
+        "MCP",
+        "OpenAPI",
+        "AI Agents",
+      ],
+      links: [],
+      image: "/toolrelay.png",
+      video: "",
+    },
+    {
       title: "DevToolKit",
       href: "https://www.devkit.best/",
       dates: "2025 - Present",
