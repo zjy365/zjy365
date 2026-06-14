@@ -8,6 +8,8 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 
+const CONTENT_DIR = path.join(/*turbopackIgnore: true*/ process.cwd(), "content");
+
 type Metadata = {
   title: string;
   publishedAt: string;
@@ -47,9 +49,9 @@ export async function getPost(slug: string, locale: string = "en") {
   let filePath: string;
 
   if (locale === "zh") {
-    filePath = path.join("content", "zh", `${slug}.mdx`);
+    filePath = path.join(CONTENT_DIR, "zh", `${slug}.mdx`);
   } else {
-    filePath = path.join("content", `${slug}.mdx`);
+    filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
   }
 
   if (!fs.existsSync(filePath)) {
@@ -83,7 +85,7 @@ async function getAllPosts(dir: string, locale: string = "en") {
 
 export async function getBlogPosts(locale: string = "en") {
   if (locale === "zh") {
-    return getAllPosts(path.join(process.cwd(), "content", "zh"), "zh");
+    return getAllPosts(path.join(CONTENT_DIR, "zh"), "zh");
   }
-  return getAllPosts(path.join(process.cwd(), "content"), "en");
+  return getAllPosts(CONTENT_DIR, "en");
 }

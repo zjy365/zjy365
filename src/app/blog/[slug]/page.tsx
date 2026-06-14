@@ -8,6 +8,12 @@ import { BlogContent } from "@/components/blog-content";
 import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 
+type BlogPageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
+
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
@@ -15,12 +21,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: {
-  params: {
-    slug: string;
-  };
-}): Promise<Metadata | undefined> {
-  let post = await getPost(params.slug);
+}: BlogPageProps): Promise<Metadata | undefined> {
+  const { slug } = await params;
+  let post = await getPost(slug);
 
   let {
     title,
@@ -69,12 +72,9 @@ export async function generateMetadata({
 
 export default async function Blog({
   params,
-}: {
-  params: {
-    slug: string;
-  };
-}) {
-  let post = await getPost(params.slug);
+}: BlogPageProps) {
+  const { slug } = await params;
+  let post = await getPost(slug);
 
   if (!post) {
     notFound();
@@ -89,7 +89,7 @@ export default async function Blog({
     return 1;
   });
 
-  const currentIndex = sortedPosts.findIndex((p) => p.slug === params.slug);
+  const currentIndex = sortedPosts.findIndex((p) => p.slug === slug);
   const previousPost = currentIndex < sortedPosts.length - 1 ? sortedPosts[currentIndex + 1] : null;
   const nextPost = currentIndex > 0 ? sortedPosts[currentIndex - 1] : null;
 
