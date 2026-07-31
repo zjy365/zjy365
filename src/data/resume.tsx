@@ -8,21 +8,21 @@ export const DATA = {
   location: "Remote",
   locationLink: "https://www.google.com/maps/place/china",
   description:
-    "Full-stack developer building in public. Currently working on AI tools and developer utilities. Learning from failures and sharing the journey.",
+    "Developer at Sealos. Building software around AI, developer tools, and cloud infrastructure.",
   summary:
-    "Full-stack developer experimenting with AI and developer tools. Currently building [DevToolKit](https://www.devkit.best/) and [LinkedIn Formatter](https://www.linkedinformatter.dev) as side projects. Also contributing to [Sealos](https://github.com/labring/sealos) (16.5k+ ⭐) at work. On a 90-day journey to go from $0 to $3K MRR while building in public.",
+    "I work on Sealos, a Kubernetes-based cloud platform, and build software around AI and developer tools. This page is a record of products, experiments, and open-source work I have shipped.",
   avatarUrl: "/me.jpg",
   skills: [
+    "TypeScript",
     "React",
     "Next.js",
-    "TypeScript",
     "Node.js",
     "Tailwind CSS",
     "Prisma",
     "Docker",
     "Kubernetes",
-    "Webpack",
-    "Monorepo",
+    "AI",
+    "MCP",
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -77,10 +77,10 @@ export const DATA = {
     {
       title: "Flowmote",
       href: "https://flowmote.sealosgzg.site/",
-      dates: "2026 - Present",
+      dates: "2026",
       active: true,
       description:
-        "Local-first mobile control plane for Codex and CLI agents. Start, monitor, approve, and continue coding agent runs from your phone while code, tools, and execution stay on your Mac.",
+        "A local-first mobile control plane for Codex and CLI agents. Start, monitor, approve, and continue coding runs from a phone while code and execution stay on a Mac.",
       technologies: [
         "Expo",
         "React Native",
@@ -101,10 +101,10 @@ export const DATA = {
     },
     {
       title: "AIVIVE",
-      dates: "2026 - Present",
+      dates: "2026",
       active: true,
       description:
-        "Recursive AI protocol built around an AI image feed and creator economy loop. Uses product activity and programmable revenue routing to connect AI creation with on-chain ecosystem mechanics.",
+        "An experiment in AI image feeds and creator economies, exploring how product activity and programmable revenue routing could shape a new creator loop.",
       technologies: [
         "Next.js",
         "React",
@@ -119,10 +119,10 @@ export const DATA = {
     },
     {
       title: "ToolRelay",
-      dates: "2026 - Present",
+      dates: "2026",
       active: true,
       description:
-        "Capability relay for AI agents. Gives Codex, Claude, Cursor, and MCP clients one wallet and one API surface for web research, page reading, image generation, document parsing, decks, and business tools.",
+        "An MCP relay for AI agents and external tools, with one API surface for research, page reading, image generation, and business tools.",
       technologies: [
         "Hono",
         "Next.js",
@@ -137,11 +137,11 @@ export const DATA = {
     },
     {
       title: "DevToolKit",
+      dates: "2025",
       href: "https://www.devkit.best/",
-      dates: "2025 - Present",
-      active: true,
+      active: false,
       description:
-        "Curated platform for discovering high-quality development tools. Helps developers find the best tools for their projects with detailed reviews and comparisons.",
+        "A curated directory and review platform for discovering developer tools by use case and technical fit.",
       technologies: [
         "Next.js",
         "TypeScript",
@@ -165,7 +165,7 @@ export const DATA = {
       dates: "2025",
       active: true,
       description:
-        "AI-powered GitHub trends analysis CLI tool. Provides intelligent insights into repository trends, technology adoption patterns, and open source ecosystem analysis.",
+        "An AI-assisted CLI for exploring GitHub trends, repository momentum, and technology adoption across the open-source ecosystem.",
       technologies: [
         "Node.js",
         "TypeScript",
@@ -185,10 +185,10 @@ export const DATA = {
     {
       title: "LinkedIn Formatter",
       href: "https://www.linkedinformatter.dev",
-      dates: "2025 - Present",
+      dates: "2025",
       active: true,
       description:
-        "AI-powered LinkedIn content formatting tool that helps optimize professional presence and enhance profile visibility.",
+        "A small AI tool for turning rough ideas into clearer, better-formatted LinkedIn posts.",
       technologies: [
         "Next.js",
         "TypeScript",
@@ -203,16 +203,15 @@ export const DATA = {
           icon: <Icons.globe className="size-3" />,
         },
       ],
-      image: "https://www.linkedinformatter.dev/og.png",
+      image: "/linkedin-formatter.png",
       video: "",
     },
     {
       title: "Scholar AI",
-      href: "https://getscholar.app/",
-      dates: "2025 - Present",
+      dates: "2025",
       active: true,
       description:
-        "Intelligent academic assistant platform integrating multiple AI models for research, content creation, and knowledge management. Features multi-model chat, academic literature search across 5+ databases, and collaborative document editing with real-time AI assistance.",
+        "A multi-model research assistant combining chat, literature search across multiple databases, and collaborative documents.",
       technologies: [
         "Next.js",
         "TypeScript",
@@ -225,23 +224,17 @@ export const DATA = {
         "Claude API",
         "Perplexity API",
       ],
-      links: [
-        {
-          type: "Website",
-          href: "https://getscholar.app/",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
-      image: "https://getscholar.app/images/og-paper-search.png", 
+      links: [],
+      image: "/scholar-ai.png",
       video: "",
     },
     {
       title: "CodoflyAI",
       href: "https://www.codofly.com/",
-      dates: "2024 - Present",
+      dates: "2024",
       active: true,
       description:
-        "AI SaaS infrastructure platform providing complete AI development toolchain with built-in authentication and payment systems. Enables developers to quickly deploy and scale AI applications.",
+        "An AI SaaS starter with authentication, billing, and deployment primitives for shipping production applications faster.",
       technologies: [
         "Next.js",
         "TypeScript",
