@@ -1,12 +1,9 @@
 <p align="left">
-👋 Hi, I'm <strong>@zjy365</strong> (jingyang)<br><br>
-Full-stack developer | Building developer tools<br><br>
-<strong>Projects:</strong> <a href="https://devkit.best">DevToolKit</a> · <a href="https://linkedinformatter.dev">LinkedIn Formatter</a> · <a href="https://github.com/zjy365/gh-explorer">gh-explorer</a> · <a href="https://codofly.com">CodoflyAI</a><br><br>
-Contributor to <a href="https://github.com/labring/sealos"><strong>@Sealos</strong></a> (16.5k+ ⭐)<br><br>
-🐦 <a href="https://twitter.com/zjy365">twitter.com/zjy365</a>
+👋 Hi, I'm <strong>zjy365</strong> (Jingyang)<br><br>
+Developer at <a href="https://sealos.io/"><strong>Sealos</strong></a>. I build software around AI, developer tools, and cloud infrastructure.<br><br>
+A few things I've built: Flowmote · <a href="https://devkit.best">DevToolKit</a> · <a href="https://github.com/zjy365/gh-explorer">gh-explorer</a> · <a href="https://codofly.com">CodoflyAI</a><br><br>
+<a href="https://x.com/zjy365">X</a> · <a href="https://zjy365.dev">zjy365.dev</a>
 </p>
-
-
 
 ###
 
