@@ -75,6 +75,56 @@ export const DATA = {
   projects: [
 
     {
+      title: "aster",
+      href: "https://github.com/zjy365/aster",
+      dates: "2026",
+      active: true,
+      description:
+        "A 28 MB local-first Kubernetes desktop client. Native Tauri shell plus a Go sidecar, keyboard-first with a ⌘K command palette for everything. No account, no telemetry, no backend — reads your kubeconfig and talks straight to the cluster.",
+      technologies: [
+        "Tauri",
+        "Rust",
+        "Go",
+        "TypeScript",
+        "React",
+        "Kubernetes",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/zjy365/aster",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/aster.png",
+      video: "",
+    },
+    {
+      title: "vfx-ui",
+      href: "https://vfx-ui.com/",
+      dates: "2026",
+      active: true,
+      description:
+        "Shader-native visual effect components for React, rendered on the GPU via WebGPU. Ships copy-paste Hero sections and GPU backgrounds/glass effects whose core visuals DOM/CSS cannot reproduce.",
+      technologies: [
+        "React",
+        "TypeScript",
+        "WebGPU",
+        "vgpu",
+        "shadcn Registry",
+        "CLI",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://vfx-ui.com/",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "/vfx-ui.png",
+      video: "",
+    },
+    {
       title: "Flowmote",
       href: "https://flowmote.sealosgzg.site/",
       dates: "2026",
@@ -89,13 +139,7 @@ export const DATA = {
         "WebSocket",
         "Codex",
       ],
-      links: [
-        {
-          type: "Website",
-          href: "https://flowmote.sealosgzg.site/",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
+      links: [],
       image: "/flowmote.png",
       video: "",
     },
@@ -149,13 +193,7 @@ export const DATA = {
         "Tailwind CSS",
         "Prisma",
       ],
-      links: [
-        {
-          type: "Website",
-          href: "https://www.devkit.best/",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
+      links: [],
       image: "/devkit.png",
       video: "",
     },
@@ -196,13 +234,7 @@ export const DATA = {
         "Tailwind CSS",
         "AI/ML",
       ],
-      links: [
-        {
-          type: "Website",
-          href: "https://www.linkedinformatter.dev",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
+      links: [],
       image: "/linkedin-formatter.png",
       video: "",
     },
@@ -244,13 +276,7 @@ export const DATA = {
         "Prisma",
         "Stripe",
       ],
-      links: [
-        {
-          type: "Website",
-          href: "https://www.codofly.com/",
-          icon: <Icons.globe className="size-3" />,
-        },
-      ],
+      links: [],
       image: "/codofly.png",
       video: "",
     },
