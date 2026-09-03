@@ -1,7 +1,7 @@
 <p align="left">
 👋 Hi, I'm <strong>zjy365</strong> (Jingyang)<br><br>
 Developer at <a href="https://sealos.io/"><strong>Sealos</strong></a>. I build software around AI, developer tools, and cloud infrastructure.<br><br>
-A few things I've built: Flowmote · <a href="https://devkit.best">DevToolKit</a> · <a href="https://github.com/zjy365/gh-explorer">gh-explorer</a> · <a href="https://codofly.com">CodoflyAI</a><br><br>
+Currently building: <a href="https://github.com/zjy365/aster"><strong>aster</strong></a> — a 28 MB local-first Kubernetes desktop client (native Tauri shell + Go sidecar, keyboard-first) · <a href="https://vfx-ui.com"><strong>vfx-ui</strong></a> — shader-native visual effect components for React, rendered on the GPU via WebGPU<br><br>
 <a href="https://x.com/zjy365">X</a> · <a href="https://zjy365.dev">zjy365.dev</a>
 </p>
 
