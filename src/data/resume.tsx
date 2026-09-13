@@ -11,7 +11,7 @@ export const DATA = {
     "Developer at Sealos. Building software around AI, developer tools, and cloud infrastructure.",
   summary:
     "I work on Sealos, a Kubernetes-based cloud platform, and build software around AI and developer tools. This page is a record of products, experiments, and open-source work I have shipped.",
-  avatarUrl: "/me.jpg",
+  avatarUrl: "/avatar.png",
   skills: [
     "TypeScript",
     "React",
