@@ -11,7 +11,7 @@ export const DATA = {
     "Developer at Sealos. Building software around AI, developer tools, and cloud infrastructure.",
   summary:
     "I work on Sealos, a Kubernetes-based cloud platform, and build software around AI and developer tools. This page is a record of products, experiments, and open-source work I have shipped.",
-  avatarUrl: "/avatar.png",
+  avatarUrl: "/avatar.webp",
   skills: [
     "TypeScript",
     "React",
@@ -96,7 +96,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/aster.png",
+      image: "/aster.webp",
       video: "",
     },
     {
@@ -121,7 +121,7 @@ export const DATA = {
           icon: <Icons.globe className="size-3" />,
         },
       ],
-      image: "/vfx-ui.png",
+      image: "/vfx-ui.webp",
       video: "",
     },
     {
@@ -140,7 +140,7 @@ export const DATA = {
         "Codex",
       ],
       links: [],
-      image: "/flowmote.png",
+      image: "/flowmote.webp",
       video: "",
     },
     {
@@ -158,7 +158,7 @@ export const DATA = {
         "Solana",
       ],
       links: [],
-      image: "/aivive.png",
+      image: "/aivive.webp",
       video: "",
     },
     {
@@ -176,7 +176,7 @@ export const DATA = {
         "AI Agents",
       ],
       links: [],
-      image: "/toolrelay.png",
+      image: "/toolrelay.webp",
       video: "",
     },
     {
@@ -194,7 +194,7 @@ export const DATA = {
         "Prisma",
       ],
       links: [],
-      image: "/devkit.png",
+      image: "/devkit.webp",
       video: "",
     },
     {
@@ -217,7 +217,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/gh-explorer.png",
+      image: "/gh-explorer.webp",
       video: "",
     },
     {
@@ -235,7 +235,7 @@ export const DATA = {
         "AI/ML",
       ],
       links: [],
-      image: "/linkedin-formatter.png",
+      image: "/linkedin-formatter.webp",
       video: "",
     },
     {
@@ -257,7 +257,7 @@ export const DATA = {
         "Perplexity API",
       ],
       links: [],
-      image: "/scholar-ai.png",
+      image: "/scholar-ai.webp",
       video: "",
     },
     {
@@ -277,7 +277,7 @@ export const DATA = {
         "Stripe",
       ],
       links: [],
-      image: "/codofly.png",
+      image: "/codofly.webp",
       video: "",
     },
   ],
