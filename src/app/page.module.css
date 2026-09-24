@@ -1,0 +1,188 @@
+.portfolio {
+  --paper: #f5f4ef;
+  --ink: #22251f;
+  --secondary-ink: #62665e;
+  --blue: #2849d8;
+  --rule: #d5d8ce;
+  --gutter: 64px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-builder), sans-serif;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+:global(body):has(.portfolio) { background: #f5f4ef; }
+.portfolio ::selection { background: #dbe0fb; color: var(--ink); }
+.portfolio :is(a, button, summary):focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 2px; }
+.portfolio :is(h1, h2, h3, p, ul, dl, dd) { margin: 0; }
+.portfolio ul { list-style: none; padding: 0; }
+.portfolio section { scroll-margin-top: 24px; }
+.portfolio a { text-decoration: none; transition: color 180ms ease, background-color 180ms ease; }
+.portfolio a:hover { color: var(--blue); }
+.portfolio a svg { transition: transform 180ms ease-out; flex-shrink: 0; }
+.portfolio a:hover svg { transform: translate(2px, -2px); }
+.skipLink { position: fixed; top: 12px; left: 12px; z-index: 50; padding: 12px 20px; background: var(--paper); color: var(--blue); transform: translateY(-200%); }
+.skipLink:focus { transform: translateY(0); }
+.navigation { padding: 24px var(--gutter); display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.wordmark { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+.navigation nav { display: flex; gap: 32px; align-items: center; font-size: 14px; font-weight: 600; }
+.navigation a { min-height: 44px; display: inline-flex; align-items: center; }
+.externalLink { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+.externalLink svg { width: 18px; height: 18px; }
+.navigation .navGithub { color: var(--blue); font-weight: 400; }
+.eyebrow { font-family: var(--font-builder-mono), monospace; text-transform: uppercase; letter-spacing: .5px; color: var(--secondary-ink); font-size: 12px; font-weight: 400; line-height: 1.5; }
+.introduction { padding: 62px var(--gutter) 48px; display: flex; flex-direction: column; gap: 32px; }
+.introMeta { display: flex; justify-content: space-between; gap: 24px; }
+.mobileIntro { display: none; }
+.introduction h1 { font-size: clamp(64px, 7vw, 100px); line-height: 1.04; letter-spacing: -.06em; font-weight: 500; }
+.positioning { display: flex; align-items: center; gap: 64px; padding: 12px 0 20px; }
+.role { flex: 1; min-width: 0; }
+.role > p { font-size: 22px; line-height: 1.5; color: var(--secondary-ink); }
+.heroActions { display: flex; align-items: center; flex-wrap: wrap; gap: 28px; margin-top: 26px; font-size: 15px; }
+.primaryAction { display: inline-flex; align-items: center; gap: 30px; min-height: 54px; padding: 14px 22px; background: var(--blue); color: white; border-radius: 4px; font-weight: 600; }
+.primaryAction svg { width: 18px; height: 18px; }
+.portfolio .primaryAction:hover { background: #203bad; color: white; }
+.portfolio .primaryAction:hover svg { transform: translateY(3px); }
+.identity { display: flex; align-items: center; gap: 18px; width: 325px; flex-shrink: 0; }
+.identity img { width: 88px; height: 104px; border-radius: 3px; object-fit: cover; }
+.identity > div { display: flex; flex-direction: column; gap: 8px; }
+.company { font-size: 18px; font-weight: 600; }
+.platform { font-size: 14px; color: var(--secondary-ink); line-height: 1.5; }
+.portfolio .disciplines { padding-top: 30px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 24px; }
+.work { padding: 54px var(--gutter) 64px; }
+.sectionHeading { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-bottom: 32px; }
+.sectionHeading h2 { font-size: 46px; font-weight: 400; letter-spacing: -2px; line-height: 1.2; }
+.leadProject { display: grid; grid-template-columns: 360px minmax(0, 1fr); gap: 40px; padding: 32px; border-radius: 5px; background: #e7eae1; align-items: center; }
+.leadCopy { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; padding: 6px 0; }
+.leadCopy h3 { font-size: 56px; line-height: 1.1; font-weight: 500; letter-spacing: -3px; }
+.proposition { font-size: 30px; line-height: 1.17; letter-spacing: -1px; }
+.projectDescription { color: var(--secondary-ink); font-size: 17px; line-height: 1.55; }
+.leadCopy .projectDescription { font-size: 16px; line-height: 1.625; }
+.leadActions { display: flex; flex-wrap: wrap; gap: 22px; color: var(--blue); font-size: 16px; font-weight: 600; }
+.leadActions .sourceLink { font-size: 14px; font-weight: 400; }
+.leadImage { background: #d8ddd1; border-radius: 3px; padding: 12px; min-height: 410px; display: flex; align-items: center; }
+.leadImage img { width: 100%; height: auto; max-height: 380px; object-fit: contain; border-radius: 5px; }
+.selectedGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 32px; }
+.selectedProject { display: flex; flex-direction: column; gap: 18px; }
+.projectImage { height: 300px; display: flex; align-items: center; }
+.projectImage img { height: 100%; width: 100%; object-fit: contain; border-radius: 4px; }
+.projectHeading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.projectHeading h3 { font-size: 32px; font-weight: 600; line-height: 1.25; letter-spacing: -1px; }
+.projectHeading a { color: var(--blue); min-width: 44px; justify-content: center; }
+.projectHeading svg { width: 28px; height: 28px; }
+.selectedProject > .eyebrow { margin-top: auto; }
+.workshop { padding: 36px var(--gutter) 72px; }
+.workshop .sectionHeading h2 { font-size: 32px; letter-spacing: -1px; }
+.projectIndex { border-top: 1px solid var(--rule); }
+.projectRow { display: grid; grid-template-columns: 250px minmax(0, 1fr) auto; gap: 32px; align-items: center; padding: 24px 0; border-bottom: 1px solid var(--rule); }
+.projectRow h3 { font-size: 21px; font-weight: 600; line-height: 1.4; }
+.projectRow > p { color: var(--secondary-ink); font-size: 16px; line-height: 1.6; }
+.rowMeta { display: flex; align-items: flex-end; flex-direction: column; gap: 4px; }
+.rowMeta time { font: 12px var(--font-builder-mono), monospace; color: var(--secondary-ink); }
+.rowLink { font-size: 14px; color: var(--blue); }
+.portfolio .archiveNote { margin: 10px 0 24px; color: var(--secondary-ink); font-size: 16px; }
+.about { background: #eceee6; padding: 64px var(--gutter) 80px; display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 80px; }
+.aboutIntro { display: flex; flex-direction: column; gap: 24px; }
+.aboutIntro h2 { font-size: 43px; font-weight: 400; line-height: 1.14; letter-spacing: -2px; }
+.biography { font-size: 21px; line-height: 1.62; }
+.capabilities { display: flex; flex-direction: column; gap: 28px; border-top: 1px solid var(--rule); padding-top: 30px; margin-top: 30px !important; }
+.capabilities > div { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 24px; align-items: baseline; }
+.capabilities dt { font-size: 11px; }
+.capabilities dd { font-size: 15px; line-height: 1.6; }
+.contact { padding: 72px var(--gutter) 30px; display: flex; flex-direction: column; gap: 30px; }
+.contact h2 { font-size: 80px; font-weight: 400; letter-spacing: -4px; line-height: 1.15; }
+.contactMethods { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.email { color: var(--blue); font-size: 30px; letter-spacing: -1px; overflow-wrap: anywhere; }
+.email svg { width: 26px; height: 26px; }
+.socials { display: flex; gap: 28px; font-size: 16px; }
+.wechatContact { position: relative; display: flex; align-items: center; }
+.wechatContact summary { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; cursor: pointer; list-style: none; transition: color 180ms ease; }
+.wechatContact summary::-webkit-details-marker { display: none; }
+.wechatContact summary::after { content: "↗"; font-size: 12px; color: var(--secondary-ink); transition: transform 180ms ease-out; }
+.wechatContact summary:hover, .wechatContact[open] summary { color: var(--blue); }
+.wechatContact summary:hover::after, .wechatContact[open] summary::after { transform: translate(2px, -2px); }
+.wechatPopover { position: absolute; z-index: 10; right: 0; bottom: calc(100% + 10px); width: 240px; padding: 9px; border: 1px solid #e3e4df; border-radius: 8px; background: #fff; box-shadow: 0 12px 32px rgb(34 37 31 / 14%); opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px) scale(.98); transform-origin: bottom right; transition: opacity 180ms ease, transform 220ms cubic-bezier(.16, 1, .3, 1), visibility 180ms; }
+.wechatPopover img { display: block; width: 100%; height: auto; border-radius: 4px; }
+.wechatPopover p { padding: 9px 3px 2px; text-align: center; color: var(--secondary-ink); font-size: 12px; }
+.wechatContact:hover .wechatPopover, .wechatContact:focus-within .wechatPopover, .wechatContact[open] .wechatPopover { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1); transition-delay: 0ms; }
+.footer { margin: 0 var(--gutter); padding: 20px 0 30px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+.footer a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.footer svg { width: 14px; height: 14px; }
+@media (max-width: 1199px) {
+  .portfolio { --gutter: 32px; }
+  .positioning { gap: 32px; }
+  .desktopBreak { display: none; }
+  .leadProject { grid-template-columns: 310px minmax(0, 1fr); gap: 28px; }
+  .leadImage { min-height: 320px; }
+  .about { grid-template-columns: 330px minmax(0, 1fr); gap: 40px; }
+  .capabilities > div { grid-template-columns: 140px minmax(0, 1fr); gap: 18px; }
+}
+@media (max-width: 959px) {
+  .positioning { align-items: flex-start; flex-direction: column; gap: 30px; }
+  .identity { width: auto; }
+  .leadProject { grid-template-columns: minmax(0, 1fr); }
+  .leadImage { min-height: 0; }
+  .leadImage img { max-height: none; }
+  .projectImage { height: auto; aspect-ratio: 16 / 9; }
+  .sectionHeading { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .projectRow { grid-template-columns: 200px minmax(0, 1fr) auto; gap: 20px; }
+  .about { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+}
+@media (max-width: 639px) {
+  .portfolio { --gutter: 24px; }
+  .navigation { padding-top: 16px; padding-bottom: 16px; gap: 12px; }
+  .wordmark { font-size: 19px; }
+  .navigation nav { gap: 18px; }
+  .navigation .navGithub { display: none; }
+  .introduction { padding-top: 40px; padding-bottom: 28px; gap: 24px; }
+  .desktopIntro, .hello { display: none; }
+  .mobileIntro { display: inline; }
+  .introduction h1 { font-size: clamp(39px, 12.56vw, 60px); line-height: 1.07; letter-spacing: -.055em; }
+  .positioning { padding: 0; }
+  .role > p { font-size: 17px; }
+  .heroActions { gap: 22px; font-size: 13px; }
+  .primaryAction { padding: 14px 16px; gap: 18px; min-height: 48px; }
+  .identity img { width: 60px; height: 70px; }
+  .company { font-size: 16px; }
+  .platform { font-size: 13px; }
+  .portfolio .disciplines { padding-top: 24px; flex-direction: column; gap: 12px; }
+  .work { padding-top: 36px; padding-bottom: 40px; }
+  .sectionHeading { margin-bottom: 24px; }
+  .sectionHeading h2 { font-size: 34px; letter-spacing: -1.5px; }
+  .leadProject { padding: 20px; gap: 24px; }
+  .leadCopy { gap: 16px; }
+  .leadCopy h3 { font-size: 44px; }
+  .proposition { font-size: 27px; }
+  .leadCopy .projectDescription { font-size: 15px; }
+  .leadCopy > .eyebrow, .selectedProject > .eyebrow { font-size: 10px; }
+  .leadCopy > .eyebrow:first-child { font-size: 12px; }
+  .leadImage { padding: 0; }
+  .selectedGrid { grid-template-columns: minmax(0, 1fr); gap: 36px; margin-top: 24px; }
+  .workshop { padding-top: 24px; padding-bottom: 44px; }
+  .workshop .sectionHeading h2 { font-size: 29px; max-width: 290px; }
+  .projectRow { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 22px 0; }
+  .rowMeta { flex-direction: row; align-items: center; justify-content: space-between; }
+  .about { padding-top: 40px; padding-bottom: 44px; }
+  .aboutIntro h2 { font-size: 34px; letter-spacing: -1.5px; }
+  .biography { font-size: 18px; line-height: 1.6; }
+  .capabilities > div { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .contact { padding-top: 44px; gap: 24px; }
+  .contact h2 { font-size: 56px; letter-spacing: -2px; }
+  .contactMethods { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .email { font-size: clamp(19px, 5.6vw, 26px); letter-spacing: -.5px; }
+  .email svg { width: 20px; height: 20px; }
+  .footer { flex-direction: column; align-items: flex-start; gap: 12px; font-size: 10px; }
+}
+@media (max-width: 359px) {
+  .navigation nav { gap: 10px; font-size: 12px; }
+  .wordmark { font-size: 17px; }
+  .heroActions { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio a, .portfolio a svg { transition: none; }
+  .portfolio a:hover svg { transform: none; }
+  .wechatContact summary, .wechatContact summary::after, .wechatPopover { transition: none; }
+}

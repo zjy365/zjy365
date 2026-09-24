@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 
 export const DATA = {
   name: "zjy365",
@@ -26,7 +26,6 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/blog", icon: NotebookIcon, label: "Blog" },
   ],
   contact: {
     email: "peterjingyang@gmail.com",
@@ -204,7 +203,6 @@ export const DATA = {
     {
       title: "DevToolKit",
       dates: "2025",
-      href: "https://www.devkit.best/",
       active: false,
       description:
         "A curated directory and review platform for discovering developer tools by use case and technical fit.",
@@ -258,28 +256,6 @@ export const DATA = {
       ],
       links: [],
       image: "/linkedin-formatter.webp",
-      video: "",
-    },
-    {
-      title: "Scholar AI",
-      dates: "2025",
-      active: true,
-      description:
-        "A multi-model research assistant combining chat, literature search across multiple databases, and collaborative documents.",
-      technologies: [
-        "Next.js",
-        "TypeScript",
-        "React",
-        "Tailwind CSS",
-        "Node.js",
-        "Prisma",
-        "Stripe",
-        "OpenAI API",
-        "Claude API",
-        "Perplexity API",
-      ],
-      links: [],
-      image: "/scholar-ai.webp",
       video: "",
     },
     {

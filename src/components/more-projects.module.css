@@ -1,0 +1,17 @@
+.disclosure { width: 100%; }
+.summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 0 10px; min-height: 64px; list-style: none; cursor: pointer; font-size: 18px; font-weight: 600; transition: color 180ms ease; }
+.summary::-webkit-details-marker { display: none; }
+.summary:hover { color: var(--blue); }
+.count { display: inline-flex; align-items: center; gap: 22px; color: var(--secondary-ink); font-size: 15px; font-weight: 400; }
+.toggleIcon { position: relative; width: 18px; height: 18px; }
+.toggleIcon::before, .toggleIcon::after { content: ""; position: absolute; width: 12px; height: 1px; top: 8px; left: 3px; background: currentColor; }
+.toggleIcon::after { transform: rotate(90deg); transition: transform 180ms ease; }
+.disclosure[open] .toggleIcon::after { transform: rotate(0deg); }
+.content { padding-top: 16px; padding-bottom: 6px; }
+@media (max-width: 639px) {
+  .summary { gap: 12px; font-size: 17px; flex-wrap: wrap; }
+  .count { font-size: 13px; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .summary, .toggleIcon::after { transition: none; }
+}
