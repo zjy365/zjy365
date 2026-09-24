@@ -10,11 +10,11 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: "400", variable: "--fon
 
 type Project = (typeof DATA.projects)[number];
 const projectByTitle = (title: Project["title"]) => DATA.projects.find((project) => project.title === title)!;
-const aster = projectByTitle("Aster");
-const selectedProjects = [projectByTitle("ScrollExport"), projectByTitle("vfx-ui")];
+const replywink = projectByTitle("ReplyWink");
+const selectedProjects = [projectByTitle("Aster"), projectByTitle("ScrollExport"), projectByTitle("vfx-ui")];
 const workshopProjects = [projectByTitle("ToolRelay"), projectByTitle("AIVIVE"), projectByTitle("DevToolKit")];
 const earlierProjects = DATA.projects.filter((project) =>
-  ![aster, ...selectedProjects, ...workshopProjects].includes(project),
+  ![replywink, ...selectedProjects, ...workshopProjects].includes(project),
 );
 const earlierYears = earlierProjects.map((project) => Number(project.dates));
 const workshopSummaries: Partial<Record<Project["title"], string>> = {
@@ -89,38 +89,39 @@ export default function Page() {
         <section id="work" className={styles.work} aria-labelledby="work-title">
           <div className={styles.sectionHeading}>
             <h2 id="work-title">Selected work</h2>
-            <span className={styles.eyebrow}>Three projects / 2026</span>
+            <span className={styles.eyebrow}>Four projects / 2026</span>
           </div>
-          <article className={styles.leadProject} aria-labelledby="aster-title">
+          <article className={styles.leadProject} aria-labelledby="replywink-title">
             <div className={styles.leadCopy}>
-              <p className={styles.eyebrow}>01 / Local-first · {aster.dates}</p>
-              <h3 id="aster-title">aster</h3>
-              <p className={styles.proposition}>Your cluster.<br />Closer to home.</p>
-              <p className={styles.projectDescription}>A local-first Kubernetes desktop client. Find resources, follow logs, and preview changes before applying them. No account or hosted backend required.</p>
-              <p className={styles.eyebrow}>Tauri / Rust / Go / React</p>
+              <p className={styles.eyebrow}>01 / Browser extension · {replywink.dates}</p>
+              <h3 id="replywink-title">ReplyWink</h3>
+              <p className={styles.proposition}>Thoughtful replies,<br />in your voice.</p>
+              <p className={styles.projectDescription}>{replywink.description}</p>
+              <p className={styles.eyebrow}>Chrome / X / AI reply drafts</p>
               <div className={styles.leadActions}>
-                <ExternalLink href="https://aster.zjy365.dev/">Explore aster</ExternalLink>
-                <ExternalLink href="https://github.com/zjy365/aster" className={styles.sourceLink}>Source</ExternalLink>
+                <ExternalLink href="https://replywink.com/">Explore ReplyWink</ExternalLink>
               </div>
             </div>
             <div className={styles.leadImage}>
-              <Image src={aster.image} alt="Aster Kubernetes desktop interface" width={1440} height={900} sizes="(max-width: 959px) 90vw, 60vw" />
+              <Image src={replywink.image} alt="ReplyWink website and reply drafting preview" width={3024} height={1597} sizes="(max-width: 959px) 90vw, 60vw" />
             </div>
           </article>
           <div className={styles.selectedGrid}>
             {selectedProjects.map((project, index) => (
               <article key={project.title} className={styles.selectedProject} aria-labelledby={`project-${index}`}>
                 <div className={styles.projectImage}>
-                  <Image src={project.image} alt={`${project.title} product interface`} width={1280} height={720} sizes="(max-width: 639px) 90vw, 45vw" />
+                  <Image src={project.image} alt={`${project.title} product interface`} width={1280} height={720} sizes="(max-width: 639px) 90vw, (max-width: 959px) 45vw, 30vw" />
                 </div>
                 <div className={styles.projectHeading}>
                   <h3 id={`project-${index}`}>{project.title}</h3>
                   {"href" in project && <ExternalLink href={project.href}><span className="sr-only">Visit {project.title} website</span></ExternalLink>}
                 </div>
-                <p className={styles.projectDescription}>{project.title === "ScrollExport"
+                <p className={styles.projectDescription}>{project.title === "Aster"
+                  ? "A local-first Kubernetes desktop client. Find resources, follow logs, and preview changes before applying them."
+                  : project.title === "ScrollExport"
                   ? "Turn long conversations and web pages into searchable text. On-device OCR captures and deduplicates visible text, then exports TXT, Markdown, or JSON."
                   : "Shader-native visual effects for React, rendered on the GPU. Copy-paste hero sections, backgrounds, and glass effects."}</p>
-                <p className={styles.eyebrow}>{index === 0 ? "02 / macOS / Windows / On-device OCR" : "03 / React / WebGPU / TypeScript"}</p>
+                <p className={styles.eyebrow}>{["02 / Tauri / Rust / Kubernetes", "03 / macOS / Windows / On-device OCR", "04 / React / WebGPU / TypeScript"][index]}</p>
               </article>
             ))}
           </div>

@@ -73,6 +73,18 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "ReplyWink",
+      href: "https://replywink.com/",
+      dates: "2026",
+      active: true,
+      description:
+        "Find posts worth replying to on X and get two AI drafts in your voice. Review, edit, and copy your reply, then post it yourself.",
+      technologies: ["Chrome extension", "TypeScript", "React", "AI"],
+      links: [],
+      image: "/replywink.webp",
+      video: "",
+    },
+    {
       title: "ScrollExport",
       href: "https://scrollexport.com/",
       dates: "2026",
@@ -142,7 +154,7 @@ export const DATA = {
           icon: <Icons.globe className="size-3" />,
         },
       ],
-      image: "/vfx-ui.webp",
+      image: "/vfx-ui-home.webp",
       video: "",
     },
     {

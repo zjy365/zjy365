@@ -65,10 +65,10 @@
 .leadActions .sourceLink { font-size: 14px; font-weight: 400; }
 .leadImage { background: #d8ddd1; border-radius: 3px; padding: 12px; min-height: 410px; display: flex; align-items: center; }
 .leadImage img { width: 100%; height: auto; max-height: 380px; object-fit: contain; border-radius: 5px; }
-.selectedGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 32px; }
+.selectedGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 32px; }
 .selectedProject { display: flex; flex-direction: column; gap: 18px; }
-.projectImage { height: 300px; display: flex; align-items: center; }
-.projectImage img { height: 100%; width: 100%; object-fit: contain; border-radius: 4px; }
+.projectImage { position: relative; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 4px; }
+.projectImage img { position: absolute; inset: 0; display: block; height: 100%; width: 100%; object-fit: cover; }
 .projectHeading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .projectHeading h3 { font-size: 32px; font-weight: 600; line-height: 1.25; letter-spacing: -1px; }
 .projectHeading a { color: var(--blue); min-width: 44px; justify-content: center; }
@@ -121,6 +121,7 @@
   .capabilities > div { grid-template-columns: 140px minmax(0, 1fr); gap: 18px; }
 }
 @media (max-width: 959px) {
+  .selectedGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .positioning { align-items: flex-start; flex-direction: column; gap: 30px; }
   .identity { width: auto; }
   .leadProject { grid-template-columns: minmax(0, 1fr); }
