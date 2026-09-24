@@ -76,7 +76,7 @@ export default function Page() {
                   Things I&apos;ve built
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  A collection of side projects, experiments, and tools I&apos;ve shipped over the years.
+                  Desktop apps, developer tools, and experiments — built around real tasks, from saving useful text to managing Kubernetes clusters.
                 </p>
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function Page() {
                 Get in Touch
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Email me at{" "}
+                Have feedback on a project or an idea to build together? Email me at{" "}
                 <Link
                   href={DATA.contact.social.email.url}
                   className="text-blue-500 hover:underline"
@@ -170,8 +170,7 @@ export default function Page() {
                   className="text-blue-500 hover:underline"
                 >
                   on X
-                </Link>{" "}
-                with a direct question.
+                </Link>.
               </p>
             </div>
           </BlurFade>

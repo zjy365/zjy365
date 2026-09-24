@@ -8,9 +8,9 @@ export const DATA = {
   location: "Remote",
   locationLink: "https://www.google.com/maps/place/china",
   description:
-    "Developer at Sealos. Building software around AI, developer tools, and cloud infrastructure.",
+    "Developer at Sealos. I build desktop apps, developer tools, and AI-powered products that make everyday work easier.",
   summary:
-    "I work on Sealos, a Kubernetes-based cloud platform, and build software around AI and developer tools. This page is a record of products, experiments, and open-source work I have shipped.",
+    "I work on Sealos, a Kubernetes-based cloud platform. My own projects tackle tasks I want to make simpler: keeping useful text from long conversations, working with Kubernetes, and building for the web.",
   avatarUrl: "/avatar.webp",
   skills: [
     "TypeScript",
@@ -73,14 +73,31 @@ export const DATA = {
     },
   ],
   projects: [
-
     {
-      title: "aster",
-      href: "https://github.com/zjy365/aster",
+      title: "ScrollExport",
+      href: "https://scrollexport.com/",
       dates: "2026",
       active: true,
       description:
-        "A 28 MB local-first Kubernetes desktop client. Native Tauri shell plus a Go sidecar, keyboard-first with a ⌘K command palette for everything. No account, no telemetry, no backend — reads your kubeconfig and talks straight to the cluster.",
+        "Turn long conversations and web pages into searchable text. ScrollExport scrolls, captures, and deduplicates visible text with on-device OCR, then exports TXT, Markdown, or JSON. Screenshots and recognized text stay on your computer.",
+      technologies: ["macOS", "Windows", "On-device OCR", "Markdown"],
+      links: [
+        {
+          type: "Website",
+          href: "https://scrollexport.com/",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "/scrollexport.webp",
+      video: "",
+    },
+    {
+      title: "Aster",
+      href: "https://aster.zjy365.dev/",
+      dates: "2026",
+      active: true,
+      description:
+        "Find Kubernetes resources, follow logs, and preview changes before applying them. A free, open-source desktop app that connects directly to your clusters using your existing kubeconfig. No account or hosted backend required.",
       technologies: [
         "Tauri",
         "Rust",
@@ -90,6 +107,11 @@ export const DATA = {
         "Kubernetes",
       ],
       links: [
+        {
+          type: "Website",
+          href: "https://aster.zjy365.dev/",
+          icon: <Icons.globe className="size-3" />,
+        },
         {
           type: "Source",
           href: "https://github.com/zjy365/aster",
