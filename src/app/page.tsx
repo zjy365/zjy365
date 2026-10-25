@@ -4,6 +4,11 @@ import { IBM_Plex_Mono, Manrope } from "next/font/google";
 import { MoreProjects } from "@/components/more-projects";
 import { DATA } from "@/data/resume";
 import styles from "./page.module.css";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "https://zjy365.dev/" },
+};
 
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-builder", display: "swap" });
 const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: "400", variable: "--font-builder-mono", display: "swap" });
@@ -146,6 +151,12 @@ export default function Page() {
           </div>
           <div className={styles.aboutDetails}>
             <p className={styles.biography}>I work on Sealos, a Kubernetes-based cloud platform, and build software around AI and developer tools. This is a record of products, experiments, and open-source work I’ve shipped.</p>
+            <p className={styles.biography}>
+              More projects and learning resources: <a href="https://plyve.zjy365.dev/">Plyve</a>,{" "}
+              <a href="https://mobbin.replywink.com/">Mobbin 查看器</a>,{" "}
+              <a href="https://learn.zjy365.dev/">ZJY365 实战</a>, and{" "}
+              <a href="https://dongxiao.zjy365.dev/">动效手记</a>.
+            </p>
             <dl className={styles.capabilities}>
               <div><dt className={styles.eyebrow}>Applications</dt><dd>TypeScript · React · Next.js · Node.js</dd></div>
               <div><dt className={styles.eyebrow}>Platform</dt><dd>Docker · Kubernetes · Prisma</dd></div>

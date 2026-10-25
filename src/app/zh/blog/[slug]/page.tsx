@@ -39,6 +39,7 @@ export async function generateMetadata({
 
   return {
     title,
+    alternates: { canonical: `${DATA.url}/zh/blog/${post.slug}` },
     description,
     keywords: keywords?.join(", "),
     authors: author ? [{ name: author }] : undefined,

@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Blog",
+  alternates: { canonical: "https://zjy365.dev/blog" },
   description: "My thoughts on software development, life, and more.",
 };
 
