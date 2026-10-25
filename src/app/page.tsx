@@ -24,7 +24,7 @@ const workshopSummaries: Partial<Record<Project["title"], string>> = {
 };
 
 function ExternalLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
-  return <a href={href} target="_blank" rel="noopener noreferrer" className={`${styles.externalLink} ${className}`}>{children}<ArrowUpRight aria-hidden="true" /></a>;
+  return <a data-rybbit-event="outbound_click" data-rybbit-prop-destination={new URL(href).hostname} href={href} target="_blank" rel="noopener noreferrer" className={`${styles.externalLink} ${className}`}>{children}<ArrowUpRight aria-hidden="true" /></a>;
 }
 
 function ProjectRow({ project }: { project: Project }) {
@@ -67,7 +67,7 @@ export default function Page() {
               <p>Developer at Sealos. I build software around AI,<br className={styles.desktopBreak} /> developer tools, and cloud infrastructure.</p>
               <div className={styles.heroActions}>
                 <a href="#work" className={styles.primaryAction}>Explore my work <ArrowDown aria-hidden="true" /></a>
-                <a href="#contact" className={styles.externalLink}>Get in touch <ArrowUpRight aria-hidden="true" /></a>
+                <a data-rybbit-event="contact_section_click" href="#contact" className={styles.externalLink}>Get in touch <ArrowUpRight aria-hidden="true" /></a>
               </div>
             </div>
             <div className={styles.identity}>
@@ -158,12 +158,12 @@ export default function Page() {
           <p className={styles.eyebrow}>Have a question or something in mind?</p>
           <h2 id="contact-title">Let’s talk.</h2>
           <div className={styles.contactMethods}>
-            <a href={DATA.contact.social.email.url} className={`${styles.externalLink} ${styles.email}`}>{DATA.contact.email}<ArrowUpRight aria-hidden="true" /></a>
+            <a data-rybbit-event="contact_click" data-rybbit-prop-method="email" href={DATA.contact.social.email.url} className={`${styles.externalLink} ${styles.email}`}>{DATA.contact.email}<ArrowUpRight aria-hidden="true" /></a>
             <div className={styles.socials}>
               <ExternalLink href={DATA.contact.social.GitHub.url}>GitHub</ExternalLink>
               <ExternalLink href={DATA.contact.social.X.url}>X</ExternalLink>
               <details className={styles.wechatContact}>
-                <summary>WeChat</summary>
+                <summary data-rybbit-event="contact_click" data-rybbit-prop-method="wechat">WeChat</summary>
                 <div className={styles.wechatPopover}>
                   <Image src="/wechat-contact.jpg" width={222} height={283} alt="WeChat QR code for zjy365" />
                   <p>Scan to add me on WeChat</p>
