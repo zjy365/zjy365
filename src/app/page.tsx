@@ -1,193 +1,116 @@
+/*
+ * THESIS: A personal collection of software samples, held by the Z·365 clip.
+ * OWN-WORLD: White paper, vermilion, Instrument Serif, Manrope, real project images.
+ * STORY: Meet zjy365, browse samples, explore the collection, and get in touch.
+ * FIRST VIEWPORT: Approved Paper A at 1440px, with the 190px zjy365 masthead.
+ * FORM: User-approved A / Fold; Paper p-4-0, artboard QS-0.
+ */
 import Image from "next/image";
-import { ArrowDown, ArrowUp, ArrowUpRight } from "lucide-react";
-import { IBM_Plex_Mono, Manrope } from "next/font/google";
-import { MoreProjects } from "@/components/more-projects";
-import { DATA } from "@/data/resume";
-import styles from "./page.module.css";
 import type { Metadata } from "next";
+import { IBM_Plex_Mono, Instrument_Serif, Manrope } from "next/font/google";
+import { DATA } from "@/data/resume";
+import { ProjectSamples, type ProjectSample } from "./project-samples";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   alternates: { canonical: "https://zjy365.dev/" },
 };
 
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-builder", display: "swap" });
-const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: "400", variable: "--font-builder-mono", display: "swap" });
-
-type Project = (typeof DATA.projects)[number];
-const projectByTitle = (title: Project["title"]) => DATA.projects.find((project) => project.title === title)!;
-const replywink = projectByTitle("ReplyWink");
-const selectedProjects = [projectByTitle("Aster"), projectByTitle("ScrollExport"), projectByTitle("vfx-ui")];
-const workshopProjects = [projectByTitle("ToolRelay"), projectByTitle("AIVIVE"), projectByTitle("DevToolKit")];
-const earlierProjects = DATA.projects.filter((project) =>
-  ![replywink, ...selectedProjects, ...workshopProjects].includes(project),
-);
-const earlierYears = earlierProjects.map((project) => Number(project.dates));
-const workshopSummaries: Partial<Record<Project["title"], string>> = {
-  ToolRelay: "One MCP relay for AI agents and external tools.",
-  AIVIVE: "An experiment in AI image feeds and creator economies.",
-  DevToolKit: "A curated directory and review platform for developer tools.",
-};
+const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-fold-serif", display: "swap" });
+const sans = Manrope({ subsets: ["latin"], variable: "--font-fold-sans", display: "swap" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: "400", variable: "--font-fold-mono", display: "swap" });
+const captions = [["Aster", "Kubernetes, closer to home."], ["ScrollExport", "Keep the conversation."], ["vfx-ui", "A little atmosphere for the web."], ["ReplyWink", "Thoughtful replies, in your voice."]] as const;
+const samples: ProjectSample[] = captions.map(([title, caption]) => {
+  const project = DATA.projects.find((item) => item.title === title);
+  if (!project || !("href" in project)) throw new Error(`Missing featured project: ${title}`);
+  return { title, caption, href: project.href, image: project.image, year: project.dates, description: project.description };
+});
+const otherProjects = DATA.projects.filter((project) => !samples.some((sample) => sample.title === project.title));
+const techStack = ["React", "TypeScript", "Next.js", "Electron", "Expo", "Agent Harness", "MCP"];
 
 function ExternalLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
-  return <a data-rybbit-event="outbound_click" data-rybbit-prop-destination={new URL(href).hostname} href={href} target="_blank" rel="noopener noreferrer" className={`${styles.externalLink} ${className}`}>{children}<ArrowUpRight aria-hidden="true" /></a>;
-}
-
-function ProjectRow({ project }: { project: Project }) {
-  const href = "href" in project ? project.href : undefined;
-  return (
-    <li className={styles.projectRow}>
-      <h3>{project.title}</h3>
-      <p>{workshopSummaries[project.title] ?? project.description}</p>
-      <div className={styles.rowMeta}>
-        <time>{project.dates}</time>
-        {href && <ExternalLink href={href} className={styles.rowLink}><span>{href.startsWith("https://github.com/") ? "Source" : "Website"}</span><span className="sr-only"> for {project.title}</span></ExternalLink>}
-      </div>
-    </li>
-  );
+  return <a data-rybbit-event="outbound_click" data-rybbit-prop-destination={new URL(href).hostname} href={href} target="_blank" rel="noopener noreferrer" className={`${styles.externalLink} ${className}`}>{children}</a>;
 }
 
 export default function Page() {
   return (
-    <div className={`${styles.portfolio} ${manrope.variable} ${mono.variable}`} id="top">
-      <a className={styles.skipLink} href="#main">Skip to content</a>
+    <div className={`${styles.portfolio} ${serif.variable} ${sans.variable} ${mono.variable}`} id="top">
+      <a className={styles.skipLink} href="#intro-title">Skip to content</a>
       <header className={styles.navigation}>
         <a href="#top" className={styles.wordmark} aria-label="zjy365 home">zjy365</a>
         <nav aria-label="Main navigation">
-          <a href="#work">Work</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <ExternalLink href={DATA.contact.social.GitHub.url} className={styles.navGithub}>GitHub</ExternalLink>
+          <a href="#work">Work</a><a href="#about">About</a>
+          <a data-rybbit-event="contact_section_click" href="#contact" className={styles.sayHello}>Say hello</a>
         </nav>
       </header>
-      <main id="main">
-        <section className={styles.introduction} aria-labelledby="intro-title">
-          <div className={`${styles.eyebrow} ${styles.introMeta}`}>
-            <span className={styles.desktopIntro}>Independent projects / Open-source work</span>
-            <span className={styles.mobileIntro}>Developer / zjy365</span>
-            <span className={styles.hello}>Hello, I’m zjy365</span>
+      <main>
+        <section className={styles.masthead} aria-labelledby="intro-title">
+          <h1 id="intro-title" tabIndex={-1}>zjy365<span>.</span></h1>
+          <div className={styles.mastheadNote}>
+            <p>Developer at Sealos.<br /> Desktop apps, developer tools,<br /> and a few curious experiments.</p>
+            <p className={styles.alias}>Also known as zjy365</p>
           </div>
-          <h1 id="intro-title">Building tools.<br />Connecting systems.</h1>
-          <div className={styles.positioning}>
-            <div className={styles.role}>
-              <p>Developer at Sealos. I build software around AI,<br className={styles.desktopBreak} /> developer tools, and cloud infrastructure.</p>
-              <div className={styles.heroActions}>
-                <a href="#work" className={styles.primaryAction}>Explore my work <ArrowDown aria-hidden="true" /></a>
-                <a data-rybbit-event="contact_section_click" href="#contact" className={styles.externalLink}>Get in touch <ArrowUpRight aria-hidden="true" /></a>
-              </div>
-            </div>
+        </section>
+        <section id="work" className={styles.featured} aria-labelledby="work-title">
+          <div className={styles.introduction}>
+            <h2 id="work-title">Small tools.<br /><em>Real problems.</em></h2>
+            <p className={styles.introCopy}>I make software around tasks I want to make simpler, from working with Kubernetes to keeping useful text from long conversations.</p>
+            <a className={styles.selectedLink} href="#project-tabs">A few selected things</a>
             <div className={styles.identity}>
-              <Image src={DATA.avatarUrl} width={88} height={104} alt="Portrait of zjy365" priority />
-              <div>
-                <p className={styles.eyebrow}>Currently</p>
-                <p className={styles.company}>Building at Sealos</p>
-                <p className={styles.platform}>Kubernetes-based<br className={styles.desktopBreak} /> cloud platform</p>
-              </div>
+              <Image src={DATA.avatarUrl} width={42} height={42} alt="Jingyang" />
+              <p>Building at Sealos.<br />Making things along the way.</p>
             </div>
           </div>
-          <ul className={`${styles.disciplines} ${styles.eyebrow}`} aria-label="Areas of work">
-            <li>01 / AI &amp; agents</li>
-            <li>02 / Developer tools</li>
-            <li>03 / Cloud infrastructure</li>
+          <ProjectSamples projects={samples} />
+        </section>
+        <section className={styles.benchInvitation} aria-label="Explore more work">
+          <p>There’s more on the bench.</p>
+          <nav aria-label="More work and social links">
+            <a href="#projects">All projects</a>
+            <ExternalLink href={DATA.contact.social.GitHub.url}>GitHub</ExternalLink>
+            <ExternalLink href={DATA.contact.social.X.url}>X</ExternalLink>
+          </nav>
+        </section>
+        <section id="projects" className={styles.workbench} aria-labelledby="projects-title">
+          <div className={styles.sectionHeading}><h2 id="projects-title">Tools, ideas, and other things.</h2><p>A few more entries in the collection.</p></div>
+          <ul className={styles.projectIndex}>
+            {otherProjects.map((project) => <li key={project.title} className={styles.projectRow}>
+              <h3>{"href" in project ? <ExternalLink href={project.href}>{project.title}</ExternalLink> : project.title}</h3>
+              <p>{project.description}</p><time>{project.dates}</time>
+            </li>)}
           </ul>
+          <nav className={styles.resources} aria-label="More projects and learning resources">
+            <ExternalLink href="https://plyve.zjy365.dev/">Plyve</ExternalLink>
+            <ExternalLink href="https://mobbin.replywink.com/">Mobbin 查看器</ExternalLink>
+            <ExternalLink href="https://learn.zjy365.dev/">ZJY365 实战</ExternalLink>
+            <ExternalLink href="https://dongxiao.zjy365.dev/">动效手记</ExternalLink>
+          </nav>
         </section>
-
-        <section id="work" className={styles.work} aria-labelledby="work-title">
-          <div className={styles.sectionHeading}>
-            <h2 id="work-title">Selected work</h2>
-            <span className={styles.eyebrow}>Four projects / 2026</span>
-          </div>
-          <article className={styles.leadProject} aria-labelledby="replywink-title">
-            <div className={styles.leadCopy}>
-              <p className={styles.eyebrow}>01 / Browser extension · {replywink.dates}</p>
-              <h3 id="replywink-title">ReplyWink</h3>
-              <p className={styles.proposition}>Thoughtful replies,<br />in your voice.</p>
-              <p className={styles.projectDescription}>{replywink.description}</p>
-              <p className={styles.eyebrow}>Chrome / X / AI reply drafts</p>
-              <div className={styles.leadActions}>
-                <ExternalLink href="https://replywink.com/">Explore ReplyWink</ExternalLink>
-              </div>
-            </div>
-            <div className={styles.leadImage}>
-              <Image src={replywink.image} alt="ReplyWink website and reply drafting preview" width={3024} height={1597} sizes="(max-width: 959px) 90vw, 60vw" />
-            </div>
-          </article>
-          <div className={styles.selectedGrid}>
-            {selectedProjects.map((project, index) => (
-              <article key={project.title} className={styles.selectedProject} aria-labelledby={`project-${index}`}>
-                <div className={styles.projectImage}>
-                  <Image src={project.image} alt={`${project.title} product interface`} width={1280} height={720} sizes="(max-width: 639px) 90vw, (max-width: 959px) 45vw, 30vw" />
-                </div>
-                <div className={styles.projectHeading}>
-                  <h3 id={`project-${index}`}>{project.title}</h3>
-                  {"href" in project && <ExternalLink href={project.href}><span className="sr-only">Visit {project.title} website</span></ExternalLink>}
-                </div>
-                <p className={styles.projectDescription}>{project.title === "Aster"
-                  ? "A local-first Kubernetes desktop client. Find resources, follow logs, and preview changes before applying them."
-                  : project.title === "ScrollExport"
-                  ? "Turn long conversations and web pages into searchable text. On-device OCR captures and deduplicates visible text, then exports TXT, Markdown, or JSON."
-                  : "Shader-native visual effects for React, rendered on the GPU. Copy-paste hero sections, backgrounds, and glass effects."}</p>
-                <p className={styles.eyebrow}>{["02 / Tauri / Rust / Kubernetes", "03 / macOS / Windows / On-device OCR", "04 / React / WebGPU / TypeScript"][index]}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.workshop} aria-labelledby="workshop-title">
-          <div className={styles.sectionHeading}>
-            <h2 id="workshop-title">Elsewhere in the workshop</h2>
-            <span className={styles.eyebrow}>Products &amp; experiments</span>
-          </div>
-          <ul className={styles.projectIndex}>{workshopProjects.map((project) => <ProjectRow key={project.title} project={project} />)}</ul>
-          <MoreProjects count={earlierProjects.length} years={`${Math.min(...earlierYears)}–${Math.max(...earlierYears)}`}>
-            <p className={styles.archiveNote}>More tools and experiments, kept here as part of the record.</p>
-            <ul className={styles.projectIndex}>{earlierProjects.map((project) => <ProjectRow key={project.title} project={project} />)}</ul>
-          </MoreProjects>
-        </section>
-
         <section id="about" className={styles.about} aria-labelledby="about-title">
-          <div className={styles.aboutIntro}>
-            <p className={styles.eyebrow}>About / zjy365</p>
-            <h2 id="about-title">From interface<br />to infrastructure.</h2>
-          </div>
+          <div><h2 id="about-title">Behind the things.</h2><p className={styles.aboutSignature}>Jingyang / zjy365</p></div>
           <div className={styles.aboutDetails}>
-            <p className={styles.biography}>I work on Sealos, a Kubernetes-based cloud platform, and build software around AI and developer tools. This is a record of products, experiments, and open-source work I’ve shipped.</p>
-            <p className={styles.biography}>
-              More projects and learning resources: <a href="https://plyve.zjy365.dev/">Plyve</a>,{" "}
-              <a href="https://mobbin.replywink.com/">Mobbin 查看器</a>,{" "}
-              <a href="https://learn.zjy365.dev/">ZJY365 实战</a>, and{" "}
-              <a href="https://dongxiao.zjy365.dev/">动效手记</a>.
-            </p>
-            <dl className={styles.capabilities}>
-              <div><dt className={styles.eyebrow}>Applications</dt><dd>TypeScript · React · Next.js · Node.js</dd></div>
-              <div><dt className={styles.eyebrow}>Platform</dt><dd>Docker · Kubernetes · Prisma</dd></div>
-              <div><dt className={styles.eyebrow}>Tools &amp; interfaces</dt><dd>AI · MCP · Tailwind CSS</dd></div>
-            </dl>
+            <p>{DATA.summary}</p>
+            <ul className={styles.techStack} aria-label="Technology stack">
+              {techStack.map((technology) => <li key={technology}>{technology}</li>)}
+            </ul>
           </div>
         </section>
-
         <section id="contact" className={styles.contact} aria-labelledby="contact-title">
-          <p className={styles.eyebrow}>Have a question or something in mind?</p>
-          <h2 id="contact-title">Let’s talk.</h2>
+          <h2 id="contact-title">Have something in mind?</h2>
           <div className={styles.contactMethods}>
-            <a data-rybbit-event="contact_click" data-rybbit-prop-method="email" href={DATA.contact.social.email.url} className={`${styles.externalLink} ${styles.email}`}>{DATA.contact.email}<ArrowUpRight aria-hidden="true" /></a>
+            <a data-rybbit-event="contact_click" data-rybbit-prop-method="email" href={DATA.contact.social.email.url} className={styles.email}>{DATA.contact.email}</a>
             <div className={styles.socials}>
               <ExternalLink href={DATA.contact.social.GitHub.url}>GitHub</ExternalLink>
               <ExternalLink href={DATA.contact.social.X.url}>X</ExternalLink>
               <details className={styles.wechatContact}>
-                <summary data-rybbit-event="contact_click" data-rybbit-prop-method="wechat">WeChat</summary>
-                <div className={styles.wechatPopover}>
-                  <Image src="/wechat-contact.jpg" width={222} height={283} alt="WeChat QR code for zjy365" />
-                  <p>Scan to add me on WeChat</p>
-                </div>
+                <summary data-rybbit-event="contact_click" data-rybbit-prop-method="wechat">WeChat <span className={styles.disclosureMark} aria-hidden="true" /></summary>
+                <div className={styles.wechatPopover}><Image src="/wechat-contact.jpg" width={222} height={283} alt="WeChat QR code for zjy365" /><p>Scan to add me on WeChat</p></div>
               </details>
             </div>
           </div>
         </section>
       </main>
-      <footer className={`${styles.footer} ${styles.eyebrow}`}>
-        <p>zjy365 / Developer at Sealos</p>
-        <a href="#top">Back to top <ArrowUp aria-hidden="true" /></a>
-      </footer>
+      <footer className={styles.footer}><p>zjy365 / Developer at Sealos</p><a href="#top">Back to top</a></footer>
     </div>
   );
 }

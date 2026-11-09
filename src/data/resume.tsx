@@ -10,18 +10,20 @@ export const DATA = {
   description:
     "Developer at Sealos. I build desktop apps, developer tools, and AI-powered products that make everyday work easier.",
   summary:
-    "I work on Sealos, a Kubernetes-based cloud platform. My own projects tackle tasks I want to make simpler: keeping useful text from long conversations, working with Kubernetes, and building for the web.",
+    "I’m a full-stack developer at Sealos. I build web, desktop, and mobile apps, and the harnesses that help AI agents get work done.",
   avatarUrl: "/avatar.webp",
   skills: [
     "TypeScript",
     "React",
     "Next.js",
     "Node.js",
-    "Tailwind CSS",
+    "Electron",
+    "Expo",
+    "React Native",
     "Prisma",
     "Docker",
     "Kubernetes",
-    "AI",
+    "Agent Harness",
     "MCP",
   ],
   navbar: [
